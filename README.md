@@ -1,8 +1,9 @@
 
 # SANTA Implementation
 
-This repository contains the source code and the experiment setup for SANTA ([link to paper](https://github.com/NUS-SNL/santa-nsdi-ae/blob/main/nsdi26spring-paper101.pdf)), along with other implementations we compare with.
-We prototype our implmentation using an Intel Tofino switch with a C++ control plane, and use another server for sending traffic across the switch.
+This repository contains the source code and the experiment setup for our paper "Managing Congestion Control Heterogeneity on the Internet with Approximate Performance Isolation"  ([link to paper](https://github.com/NUS-SNL/santa-nsdi-ae/blob/main/nsdi26spring-paper101.pdf))
+
+We provide the p4 implementation of our multi-queue AQM, Santa, along with other the implementations we compared it with. We prototype our implementation using an Intel Tofino switch with a C++ control plane, and use another server for sending traffic across the switch.
 ---
 
 ## Setup Requirements
