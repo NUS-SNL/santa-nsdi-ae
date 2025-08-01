@@ -1,7 +1,7 @@
 
 # SANTA Implementation
 
-This repository contains the source code and the experiment setup for SANTA (paper_pdf), along with other implementations we compare with.
+This repository contains the source code and the experiment setup for SANTA ([link to paper](https://github.com/NUS-SNL/santa-nsdi-ae/blob/main/nsdi26spring-paper101.pdf)), along with other implementations we compare with.
 We prototype our implmentation using an Intel Tofino switch with a C++ control plane, and use another server for sending traffic across the switch.
 ---
 
