@@ -1,0 +1,79 @@
+#pipeline pipe
+#stage 0
+^--- ----------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiForward(0,1)
+A^-- ----------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiSetTs(0,1)
+A-^- ----------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiToggleCebinae(0,7)
+B--^ ----------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiRotateF(0,9)
+#stage 1
+AC-- ^---------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiGetRelativeRound(1,2)
+D--- -^--------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalcF(1,2)
+A--- --^-------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiGetTailq(0,2)
+A--- ---^------- ----- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiGetHeadq(0,3)
+A--- ----^------ ----- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiSetPktLen(0,7)
+E--- -----^----- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalcSaturated(1,7)
+B--C ------^---- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiReadLastSize(1,10)
+B--- -------^--- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiDrop_rotate(0,11)
+B--F --------^-- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiRotateTailq(1,11)
+B--F ---------^- ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiRotateHeadq(1,11)
+B--F ----------^ ----- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiRotateRoundTime(1,11)
+#stage 2
+A--- F---------- ^---- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiCalc_relative_round_m_dt(2,3)
+A--- -CC-------- -^--- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiGetRates_tail(2,3)
+A--- F---------- --^-- ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiPrecompute_relative_round_test(2,3)
+A--- -C-C------- ---^- ---- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiGetRates_head(2,4)
+B--C ------C---- ----^ ---- -- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiDebugLastSize(2,11)
+#stage 3
+A--- G---------- GCFG- ^--- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalc_log_rate_tail(3,4)
+---- ----------- H---- A^-- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalc_log_relative_round_m_dt(3,4)
+---- H---------- ----- B-^- -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalc_log_relative_round(3,5)
+---- ----------- ---H- B--^ -- - - - -- -- - - -- - - -- - --- - - t_igr_tiCalc_log_rate_head(3,5)
+#stage 4
+---- ----------- ----- DF-- ^- - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail(4,5)
+---- ----------- ----- B-FF -^ - - - -- -- - - -- - - -- - --- - - tbl_t_igr_aiCalc_log_aggregate_size(4,6)
+#stage 5
+---- ----------- ----- A--- C- ^ - - -- -- - - -- - - -- - --- - - t_igr_tiExp_relative_round_m_dt_x_rate_tail(5,6)
+#stage 6
+---- ----------- ---I- A--- -- F ^ - -- -- - - -- - - -- - --- - - tbl_t_igr_aiCalc_aggregate_size_else(6,7)
+#stage 7
+---- ----------- ----- B--- -C - - ^ -- -- - - -- - - -- - --- - - t_igr_tiExp_aggregate_size(5,7)
+#stage 8
+A-F- -CGGCF----- -G-G- ---- -- - C C ^- -- - - -- - - -- - --- - - tbl_t_igr_aiCountBytes(7,8)
+B--C ------C---- ----- ---- -- - - - -^ -- - - -- - - -- - --- - - tbl_t_igr_ai_rotate_bytes(2,11)
+#stage 9
+---- ----------- ---I- ---- -- - - - D- ^- - - -- - - -- - --- - - tbl_t_igr_aiCalc_past_head(8,9)
+---- -H--------- ----- ---- -- - - - E- -^ - - -- - - -- - --- - - tbl_t_igr_aiDebugWriteBytes(8,11)
+#stage 10
+---- ----------- -I--- ---- -- - - - A- F- ^ - -- - - -- - --- - - tbl_t_igr_aiCalc_past_tail(9,10)
+#stage 11
+---- --II------- ----- ---- -- - - - A- C- C ^ -- - - -- - --- - - t_igr_tiSetQueue(10,11)
+#stage 0
+---- ----------- ----- ---- -- - - - -- -- - - ^- - - -- - --- - - tbl_main197_0(0,5)
+---- ----------- ----- ---- -- - - - -- -- - - -^ - - -- - --- - - tbl_main198(0,5)
+#stage 1
+---- ----------- ----- ---- -- - - - -- -- - - FG ^ - -- - --- - - t_egr_dpt_2_merged_tbl(1,6)
+#stage 2
+---- ----------- ----- ---- -- - - - -- -- - - HH A ^ -- - --- - - t_egr_dpt_1_merged_tbl(1,6)
+#stage 3
+---- ----------- ----- ---- -- - - - -- -- - - -- A C ^- - --- - - t_egr_dpt_4_merged_tbl(2,7)
+---- ----------- ----- ---- -- - - - -- -- - - -- A C -^ - --- - - t_egr_dpt_3_merged_tbl(2,7)
+#stage 4
+---- ----------- ----- ---- -- - - - -- -- - - -- A - FF ^ --- - - t_egr_dpt_5_merged_tbl(3,8)
+#stage 5
+---- ----------- ----- ---- -- - - - -- -- - - -- E - CC C ^-- - - t_egr_dpt_7_merged_tbl(4,9)
+---- ----------- ----- ---- -- - - - -- -- - - -- E - CC C -^- - - t_egr_dpt_6_merged_tbl(4,9)
+---- ----------- ----- ---- -- - - - -- -- - - -H A C CC C --^ - - t_egr_dpt_8_merged_tbl(4,11)
+#stage 6
+---- ----------- ----- ---- -- - - - -- -- - - -- A - CC C FF- ^ - t_egr_dpt_9_merged_tbl(5,10)
+#stage 7
+---- ----------- ----- ---- -- - - - -- -- - - -H E - CC C CC- C ^ t_egr_dpt_10_merged_tbl(6,11)
+#dependencies
+A :  CONTROL_DEFAULT_NEXT_TABLE
+B :  CONTROL_COND_TRUE
+C :  IXBAR_READ ANTI_NEXT_TABLE_DATA
+D :  CONTROL_DEFAULT_NEXT_TABLE ACTION_READ
+E :  CONTROL_DEFAULT_NEXT_TABLE IXBAR_READ
+F :  ACTION_READ ANTI_NEXT_TABLE_DATA
+G :  ANTI_NEXT_TABLE_DATA
+H :  IXBAR_READ
+I :  ACTION_READ
+

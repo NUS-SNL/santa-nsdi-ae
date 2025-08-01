@@ -1,0 +1,21 @@
+digraph parser {
+size="8,5"
+State0xd1dc6c0 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{\$entry_point}"];
+State0xd1dc480 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start}"];
+State0xd1efb40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{TofinoIngressParser_parse_pktgen}"];
+State0xd1ef900 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start_0}"];
+State0xd07dd80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{EthIpParser_parse_rotate}"];
+State0xd1ffb40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{EthIpParser_parse_ip}"];
+State0xcdd5d80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start_1}"];
+State0xd1dc6c0 -> State0xd1dc480 [  ]
+State0xd1dc480 -> State0xd1efb40 [  ]
+State0xd1dc480 -> State0xd1efb40 [  ]
+State0xd1dc480 -> State0xd1ef900 [  ]
+State0xd1efb40 -> State0xd1ef900 [  ]
+State0xd1ef900 -> State0xd07dd80 [  ]
+State0xd1ef900 -> State0xd1ffb40 [  ]
+State0xd1ef900 -> State0xcdd5d80 [  ]
+State0xd07dd80 -> State0xcdd5d80 [  ]
+State0xd1ffb40 -> State0xcdd5d80 [  ]
+State0xcdd5d80 -> ingress_pipe [  ]
+}

@@ -1,0 +1,2 @@
+wget --user i0001011@comp.nus.edu.sg --password Nusloginpass@123 https://data.caida.org/datasets/passive-2019/equinix-nyc/20190117-130000.UTC/equinix-nyc.dirA.20
+190117-130000.UTC.anon.pcap.gz

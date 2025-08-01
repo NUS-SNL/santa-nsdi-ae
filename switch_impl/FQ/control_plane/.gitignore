@@ -1,0 +1,11 @@
+cd ...*.o
+*.d
+*.tofino
+*.tofino2
+zlog-cfg-cur
+bf_drivers.log*
+inNetworkCC
+inNetworkCC-debug
+build/*
+*.fuse*
+q_log.txt

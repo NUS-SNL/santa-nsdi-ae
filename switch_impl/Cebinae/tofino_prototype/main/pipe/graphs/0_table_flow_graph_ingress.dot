@@ -1,0 +1,261 @@
+digraph ingress {
+cond_5 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.ethernet.ether_type == 4660\l\l
+ "];
+t_igr_tiRotateF [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRotateF\l\l
+M:\l
+ hdr.pktgen.packet_id\l
+\lW:\l
+ t_igr_f\l
+ "];
+t_igr_tiToggleCebinae [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiToggleCebinae\l\l
+W:\l
+ t_igr_useCebinae\l
+ "];
+t_igr_tiRotateRoundTime [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRotateRoundTime\l\l
+M:\l
+ t_igr_f\l
+\lR:\l
+ t_igr_ts\l
+\l "];
+t_igr_tiRotateHeadq [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRotateHeadq\l\l
+M:\l
+ t_igr_f\l
+\l "];
+t_igr_tiRotateTailq [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRotateTailq\l\l
+M:\l
+ t_igr_f\l
+\l "];
+t_igr_tiReadLastSize [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiReadLastSize\l\l
+M:\l
+ t_igr_f\l
+\lW:\l
+ t_igr_aggregate_size\l
+ "];
+tbl_t_igr_ai_rotate_bytes [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_ai_rotate_bytes\l\l
+R:\l
+ t_igr_aggregate_size\l
+ t_igr_pkt_len\l
+\l "];
+tbl_t_igr_aiDebugLastSize [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiDebugLastSize\l\l
+R:\l
+ t_igr_aggregate_size\l
+\l "];
+t_igr_tiDrop_rotate [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiDrop_rotate\l\l
+M:\l
+ t_igr_f\l
+\lW:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+tbl_t_igr_aiSetPktLen [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetPktLen\l\l
+W:\l
+ t_igr_pkt_len\l
+ "];
+tbl_t_igr_aiSetTs [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetTs\l\l
+W:\l
+ t_igr_ts\l
+ "];
+t_igr_tiForward [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiForward\l\l
+M:\l
+ md.ingress_port\l
+ hdr.ethernet.dst_addr\l
+\lW:\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+ "];
+t_igr_tiCalcF [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalcF\l\l
+M:\l
+ hdr.ip.src_addr\l
+ hdr.ip.dst_addr\l
+\lR:\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+\lW:\l
+ t_igr_f\l
+ "];
+t_igr_tiCalcSaturated [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalcSaturated\l\l
+M:\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+\lW:\l
+ t_igr_saturated\l
+ "];
+tbl_t_igr_aiGetRelativeRound [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiGetRelativeRound\l\l
+R:\l
+ t_igr_ts\l
+\lW:\l
+ t_igr_relative_round\l
+ "];
+tbl_t_igr_aiGetHeadq [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiGetHeadq\l\l
+W:\l
+ t_igr_headq\l
+ "];
+tbl_t_igr_aiGetTailq [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiGetTailq\l\l
+W:\l
+ t_igr_tailq\l
+ "];
+t_igr_tiGetRates_head [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiGetRates_head\l\l
+M:\l
+ t_igr_f\l
+ t_igr_headq\l
+\lW:\l
+ t_igr_rate_head\l
+ t_igr_rate_head_x_dT\l
+ "];
+t_igr_tiGetRates_tail [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiGetRates_tail\l\l
+M:\l
+ t_igr_f\l
+ t_igr_tailq\l
+\lW:\l
+ t_igr_rate_tail\l
+ t_igr_rate_tail_x_dT\l
+ "];
+tbl_t_igr_aiCalc_relative_round_m_dt [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_relative_round_m_dt\l\l
+R:\l
+ t_igr_relative_round\l
+\lW:\l
+ t_igr_relative_round_m_dt\l
+ "];
+tbl_t_igr_aiPrecompute_relative_round_test [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiPrecompute_relative_round_test\l\l
+R:\l
+ t_igr_relative_round\l
+\lW:\l
+ t_igr_dT_minus_relative_round\l
+ "];
+cond_6 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_dT_minus_relative_round == 0\l\l
+ "];
+t_igr_tiCalc_log_rate_head [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_log_rate_head\l\l
+M:\l
+ t_igr_rate_head\l
+\lW:\l
+ t_igr_log_rate_head\l
+ "];
+t_igr_tiCalc_log_relative_round_m_dt [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_log_relative_round_m_dt\l\l
+M:\l
+ t_igr_relative_round_m_dt\l
+\lW:\l
+ t_igr_log_relative_round_m_dt\l
+ "];
+t_igr_tiCalc_log_relative_round [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_log_relative_round\l\l
+M:\l
+ t_igr_relative_round\l
+\lW:\l
+ t_igr_log_relative_round\l
+ "];
+tbl_t_igr_aiCalc_log_aggregate_size [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_log_aggregate_size\l\l
+R:\l
+ t_igr_log_rate_head\l
+ t_igr_log_relative_round\l
+\lW:\l
+ t_igr_log_aggregate_size\l
+ "];
+t_igr_tiExp_aggregate_size [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiExp_aggregate_size\l\l
+M:\l
+ t_igr_log_aggregate_size\l
+\lW:\l
+ t_igr_aggregate_size\l
+ "];
+cond_7 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_saturated == 1 && t_igr_useCebinae == 1\l\l
+ "];
+t_igr_tiCalc_log_rate_tail [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_log_rate_tail\l\l
+M:\l
+ t_igr_rate_tail\l
+\lW:\l
+ t_igr_log_rate_tail\l
+ "];
+tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail\l\l
+R:\l
+ t_igr_log_relative_round_m_dt\l
+ t_igr_log_rate_tail\l
+\lW:\l
+ t_igr_log_relative_round_m_dt_x_rate_tail\l
+ "];
+t_igr_tiExp_relative_round_m_dt_x_rate_tail [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiExp_relative_round_m_dt_x_rate_tail\l\l
+M:\l
+ t_igr_log_relative_round_m_dt_x_rate_tail\l
+\lW:\l
+ t_igr_relative_round_m_dt_x_rate_tail\l
+ "];
+tbl_t_igr_aiCalc_aggregate_size_else [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_aggregate_size_else\l\l
+R:\l
+ t_igr_rate_head_x_dT\l
+ t_igr_relative_round_m_dt_x_rate_tail\l
+\lW:\l
+ t_igr_aggregate_size\l
+ "];
+tbl_t_igr_aiCountBytes [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCountBytes\l\l
+R:\l
+ t_igr_aggregate_size\l
+ t_igr_pkt_len\l
+\lW:\l
+ t_igr_bytes\l
+ "];
+tbl_t_igr_aiDebugWriteBytes [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiDebugWriteBytes\l\l
+R:\l
+ t_igr_bytes\l
+\l "];
+tbl_t_igr_aiCalc_past_head [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_past_head\l\l
+R:\l
+ t_igr_bytes\l
+ t_igr_rate_head_x_dT\l
+\lW:\l
+ t_igr_past_head\l
+ "];
+tbl_t_igr_aiCalc_past_tail [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_past_tail\l\l
+R:\l
+ t_igr_past_head\l
+ t_igr_rate_tail_x_dT\l
+\lW:\l
+ t_igr_past_tail\l
+ "];
+t_igr_tiSetQueue [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiSetQueue\l\l
+M:\l
+ t_igr_past_head\l
+ t_igr_past_tail\l
+\lR:\l
+ t_igr_headq\l
+ t_igr_tailq\l
+\lW:\l
+ ig_intr_md_for_tm.qid\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+    PARSER -> cond_5
+    cond_5 -> t_igr_tiRotateF
+    PARSER -> cond_5
+    cond_5 -> t_igr_tiToggleCebinae
+    t_igr_tiRotateF -> t_igr_tiRotateRoundTime
+    t_igr_tiRotateRoundTime -> t_igr_tiRotateHeadq
+    t_igr_tiRotateHeadq -> t_igr_tiRotateTailq
+    t_igr_tiRotateTailq -> t_igr_tiReadLastSize
+    t_igr_tiReadLastSize -> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_ai_rotate_bytes -> tbl_t_igr_aiDebugLastSize
+    tbl_t_igr_aiDebugLastSize -> t_igr_tiDrop_rotate
+    t_igr_tiDrop_rotate -> DEPARSER
+    t_igr_tiToggleCebinae -> tbl_t_igr_aiSetPktLen
+    tbl_t_igr_aiSetPktLen -> tbl_t_igr_aiSetTs
+    tbl_t_igr_aiSetTs -> t_igr_tiForward
+    t_igr_tiForward -> t_igr_tiCalcF
+    t_igr_tiCalcF -> t_igr_tiCalcSaturated
+    t_igr_tiCalcSaturated -> tbl_t_igr_aiGetRelativeRound
+    tbl_t_igr_aiGetRelativeRound -> tbl_t_igr_aiGetHeadq
+    tbl_t_igr_aiGetHeadq -> tbl_t_igr_aiGetTailq
+    tbl_t_igr_aiGetTailq -> t_igr_tiGetRates_head
+    t_igr_tiGetRates_head -> t_igr_tiGetRates_tail
+    t_igr_tiGetRates_tail -> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiCalc_relative_round_m_dt -> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiPrecompute_relative_round_test -> cond_6
+    cond_6 -> t_igr_tiCalc_log_rate_head
+    cond_6 -> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_rate_head -> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_relative_round -> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -> t_igr_tiExp_aggregate_size
+    t_igr_tiExp_aggregate_size -> cond_7
+    t_igr_tiCalc_log_relative_round_m_dt -> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalc_log_rate_tail -> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiCalc_aggregate_size_else -> cond_7
+    cond_7 -> tbl_t_igr_aiCountBytes
+    cond_7 -> DEPARSER
+    tbl_t_igr_aiCountBytes -> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiDebugWriteBytes -> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_past_head -> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_tail -> t_igr_tiSetQueue
+    t_igr_tiSetQueue -> DEPARSER
+}

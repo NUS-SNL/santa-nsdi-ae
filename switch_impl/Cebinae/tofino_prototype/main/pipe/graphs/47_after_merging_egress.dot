@@ -1,0 +1,54 @@
+digraph parser {
+size="8,5"
+subgraph cluster_0 {style=invis;
+State0xff91a50 [style=filled, fillcolor=lightskyblue1, shape=record, label="{\$entry_point:\l\l}"];
+Match0x1187c000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_1 {style=invis;
+State0xff91780 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start\.\$oob_stall_0:\l\l}"];
+Match0x11891c80 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_2 {style=invis;
+State0xff91690 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start\.\$split_0:\l\l}"];
+Match0x11891960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x1234: \l\l}"];
+Match0x11895320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0800: \l\l}"];
+Match0x11895000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x****: \l\l}"];
+}
+subgraph cluster_3 {style=invis;
+State0xff915a0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_initial:\l\l}"];
+Match0x11891640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0x117c1320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+subgraph cluster_4 {style=invis;
+State0xff912d0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_loop\.\$split_0:\l\l}"];
+Match0x11891320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0x117c1c80 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+subgraph cluster_5 {style=invis;
+State0xff91000 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_loop\.\$it1\.\$split_0:\l\l}"];
+Match0x11891000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0x117b7640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+State0xff91a50 -> Match0x1187c000
+Match0x1187c000 -> State0xff91780
+State0xff91780 -> Match0x11891c80
+Match0x11891c80 -> State0xff91690
+State0xff91690 -> Match0x11891960
+Match0x11891960 -> State0xff915a0
+State0xff91690 -> Match0x11895320
+Match0x11895320 -> State0xff915a0
+State0xff91690 -> Match0x11895000
+Match0x11895000 -> State0xff915a0
+State0xff915a0 -> Match0x11891640
+Match0x11891640 -> State0xff912d0
+State0xff915a0 -> Match0x117c1320
+Match0x117c1320 -> egress_pipe
+State0xff912d0 -> Match0x11891320
+Match0x11891320 -> State0xff91000
+State0xff912d0 -> Match0x117c1c80
+Match0x117c1c80 -> egress_pipe
+State0xff91000 -> Match0x11891000
+Match0x11891000 -> egress_pipe
+State0xff91000 -> Match0x117b7640
+Match0x117b7640 -> egress_pipe
+}

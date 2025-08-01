@@ -1,0 +1,26 @@
+digraph states { 
+subgraph cluster_0 {
+label="iteration 0"size="8,5"
+cluster_0_State0x11618d80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start:\l\l    extract inbuf bit[7\.\.15] to PHV-allocated eg_intr_md\.egress_port;\l    extract inbuf bit[216\.\.231] to PHV-allocated hdr\.ethernet\.dst_addr[47:32];\l    extract inbuf bit[232\.\.263] to PHV-allocated hdr\.ethernet\.dst_addr[31:0];\l    extract inbuf bit[264\.\.279] to PHV-allocated hdr\.ethernet\.src_addr[47:32];\l    extract inbuf bit[280\.\.311] to PHV-allocated hdr\.ethernet\.src_addr[31:0];\l    extract inbuf bit[312\.\.327] to PHV-allocated hdr\.ethernet\.ether_type;\l    Parser zero init: hdr\.min_parse_depth_padding_0[0]\.\$valid;\l    extract constant 1 to PHV-allocated hdr\.ethernet\.\$valid;\l    parser counter load imm 24\l\l    select hdr\.ethernet/ethernet\.ether_type; from [ inbuf bit[312\.\.327] ]\l}"];
+cluster_0_State0x11618d80 -> cluster_0_State0x11618b40 [ label="match const: 0x1234: (shift=41)
+goto EthIpParser_parse_rotate_0" ]
+cluster_0_State0x11618d80 -> cluster_0_State0x11629900 [ label="match const: 0x0800: (shift=41)
+goto EthIpParser_parse_ip_0" ]
+cluster_0_State0x11618d80 -> cluster_0_State0x11618900 [ label="match const: 0x****: (shift=41)
+goto start_3" ]
+}
+subgraph cluster_1 {
+label="iteration 1"size="8,5"
+cluster_1_State0x11618d80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start:\l\l    extract inbuf bit[7\.\.15] to PHV-allocated eg_intr_md\.egress_port;\l    extract inbuf bit[216\.\.231] to PHV-allocated hdr\.ethernet\.dst_addr[47:32];\l    extract constant 1 to PHV-allocated hdr\.ethernet\.\$valid;\l    parser counter load imm 24\l    Parser zero init: hdr\.min_parse_depth_padding_0[0]\.\$valid;\l\l}"];
+cluster_1_State0x116296c0 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start\.\$split_0:\l\l    extract inbuf bit[0\.\.31] to PHV-allocated hdr\.ethernet\.dst_addr[31:0];\l    extract inbuf bit[32\.\.47] to PHV-allocated hdr\.ethernet\.src_addr[47:32];\l    extract inbuf bit[48\.\.79] to PHV-allocated hdr\.ethernet\.src_addr[31:0];\l    extract inbuf bit[80\.\.95] to PHV-allocated hdr\.ethernet\.ether_type;\l\l    select hdr\.ethernet/ethernet\.ether_type; from [ inbuf bit[80\.\.95] ]\l}"];
+cluster_1_State0x11618d80 -> cluster_1_State0x116296c0 [ label="match const: *: (shift=29)
+goto start\.\$split_0" ]
+cluster_1_State0x116296c0 -> cluster_1_State0x11618b40 [ label="match const: 0x1234: (shift=12)
+goto EthIpParser_parse_rotate_0" ]
+cluster_1_State0x116296c0 -> cluster_1_State0x11629900 [ label="match const: 0x0800: (shift=12)
+goto EthIpParser_parse_ip_0" ]
+cluster_1_State0x116296c0 -> cluster_1_State0x11618900 [ label="match const: 0x****: (shift=12)
+goto start_3" ]
+}
+cluster_0_State0x11618d80 -> cluster_1_State0x11618d80 [ color="red" ]
+}

@@ -1,0 +1,22 @@
+digraph states { 
+subgraph cluster_0 {
+label="iteration 0"size="8,5"
+cluster_0_State0x11618480 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop:\l\l    extract inbuf bit[0\.\.7] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[87:80];\l    extract inbuf bit[8\.\.23] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[79:64];\l    extract inbuf bit[24\.\.55] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[63:32];\l    extract inbuf bit[56\.\.87] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[31:0];\l    parser counter dec 11\l    extract constant 4 to PHV-allocated hdr\.min_parse_depth_padding_0\.\$stkvalid;\l\l    select min_parse_depth_counter_0/min_parse_depth_counter\.is_negative(); from parser counter is negative? \l    select min_parse_depth_counter_0/min_parse_depth_counter\.is_zero(); from parser counter is zero? \l}"];
+cluster_0_State0x11618480 -> cluster_0_State0x11618240 [ label="match const: 0x0: (shift=11)
+goto min_parse_depth_accept_loop\.\$it1" ]
+cluster_0_State0x11618480 -> cluster_0_egress_pipe [ label="match const: *: (shift=11)
+goto (end)" ]
+}
+subgraph cluster_1 {
+label="iteration 1"size="8,5"
+cluster_1_State0x11618480 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop:\l\l    extract inbuf bit[0\.\.7] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[87:80];\l    extract inbuf bit[8\.\.23] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[79:64];\l    extract inbuf bit[24\.\.55] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[63:32];\l    extract inbuf bit[56\.\.87] to PHV-allocated hdr\.min_parse_depth_padding_0[0]\.packet_payload[31:0];\l    extract constant 4 to PHV-allocated hdr\.min_parse_depth_padding_0\.\$stkvalid;\l    parser counter dec 11\l\l}"];
+cluster_1_State0x11629d80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop\.\$split_0:\l\l    select min_parse_depth_counter_0/min_parse_depth_counter\.is_negative(); from parser counter is negative? \l    select min_parse_depth_counter_0/min_parse_depth_counter\.is_zero(); from parser counter is zero? \l}"];
+cluster_1_State0x11618480 -> cluster_1_State0x11629d80 [ label="match const: *: (shift=11)
+goto min_parse_depth_accept_loop\.\$split_0" ]
+cluster_1_State0x11629d80 -> cluster_1_State0x11618240 [ label="match const: 0x0: (shift=0)
+goto min_parse_depth_accept_loop\.\$it1" ]
+cluster_1_State0x11629d80 -> cluster_1_egress_pipe [ label="match const: *: (shift=0)
+goto (end)" ]
+}
+cluster_0_State0x11618480 -> cluster_1_State0x11618480 [ color="red" ]
+}

@@ -1,0 +1,45 @@
+digraph parser {
+size="8,5"
+subgraph cluster_0 {style=invis;
+State0xff7d000 [style=filled, fillcolor=lightskyblue1, shape=record, label="{\$entry_point:\l\l}"];
+Match0x1187cc80 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_1 {style=invis;
+State0xff85870 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start:\l\l}"];
+Match0x1187c960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b*******011000100: \l\l}"];
+Match0x1188d320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b*******001000100: \l\l}"];
+Match0x1188d000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x****: \l\l}"];
+}
+subgraph cluster_2 {style=invis;
+State0xff854b0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{TofinoIngressParser_parse_pktgen:\l\l}"];
+Match0x1187c640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_3 {style=invis;
+State0xff850f0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start_0:\l\l}"];
+Match0x1187c320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x1234: \l\l}"];
+Match0x117bc960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0800: \l\l}"];
+Match0x117bc640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x****: \l\l}"];
+}
+subgraph cluster_4 {style=invis;
+State0xfc5f3c0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{EthIpParser_parse_ip:\l\l}"];
+Match0x115d5000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+State0xff7d000 -> Match0x1187cc80
+Match0x1187cc80 -> State0xff85870
+State0xff85870 -> Match0x1187c960
+Match0x1187c960 -> State0xff854b0
+State0xff85870 -> Match0x1188d320
+Match0x1188d320 -> State0xff854b0
+State0xff85870 -> Match0x1188d000
+Match0x1188d000 -> State0xff850f0
+State0xff854b0 -> Match0x1187c640
+Match0x1187c640 -> State0xff850f0
+State0xff850f0 -> Match0x1187c320
+Match0x1187c320 -> ingress_pipe
+State0xff850f0 -> Match0x117bc960
+Match0x117bc960 -> State0xfc5f3c0
+State0xff850f0 -> Match0x117bc640
+Match0x117bc640 -> ingress_pipe
+State0xfc5f3c0 -> Match0x115d5000
+Match0x115d5000 -> ingress_pipe
+}

@@ -1,0 +1,3496 @@
+FindDependencyGraph : After Instruction Selection
+ingress: [9]
+  cond-5(ingress::hdr.ethernet.ether_type == 4660; => $true, 1 => $false)
+    $true: [10]
+        +--t_igr_tiRotateF
+        0+--t_igr_tiRotateRoundTime
+        00+--t_igr_tiRotateHeadq
+        000+--t_igr_tiRotateTailq
+        0000+--t_igr_tiReadLastSize
+        00000+--tbl_t_igr_ai_rotate_bytes
+        000000+--tbl_t_igr_aiDebugLastSize
+        0000000+--t_igr_tiDrop_rotate
+      t_igr_tiRotateF
+      t_igr_tiRotateRoundTime
+        stateful Ingress.t_igr.ri_base_round_time    1
+      t_igr_tiRotateHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      t_igr_tiRotateTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiReadLastSize
+      tbl_t_igr_ai_rotate_bytes
+        stateful Ingress.t_igr.ri_bytes   64
+      tbl_t_igr_aiDebugLastSize
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      t_igr_tiDrop_rotate
+    $false: [11]
+        +--t_igr_tiToggleCebinae
+        0+--tbl_t_igr_aiSetPktLen
+        00+--tbl_t_igr_aiSetTs
+        000+--t_igr_tiForward
+        0000+--t_igr_tiCalcF
+        00000+--t_igr_tiCalcSaturated
+        000000+--tbl_t_igr_aiGetRelativeRound
+        0000000+--tbl_t_igr_aiGetHeadq
+        00000000+--tbl_t_igr_aiGetTailq
+        000000000+--t_igr_tiGetRates_head
+        0000000000+--t_igr_tiGetRates_tail
+        00000000000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        000000000000+--tbl_t_igr_aiPrecompute_relative_round_test
+        0000000000000+--cond-6
+        00000000000000+--cond-7
+      t_igr_tiToggleCebinae
+      tbl_t_igr_aiSetPktLen
+      tbl_t_igr_aiSetTs
+      t_igr_tiForward
+      t_igr_tiCalcF
+        stateful Ingress.t_igr.fCount 1024
+      t_igr_tiCalcSaturated
+      tbl_t_igr_aiGetRelativeRound
+        stateful Ingress.t_igr.ri_base_round_time    1
+      tbl_t_igr_aiGetHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      tbl_t_igr_aiGetTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiGetRates_head
+      t_igr_tiGetRates_tail
+      tbl_t_igr_aiCalc_relative_round_m_dt
+      tbl_t_igr_aiPrecompute_relative_round_test
+      cond-6(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1 => $false)
+        $true: [12] 0 00 000
+          t_igr_tiCalc_log_rate_head
+          t_igr_tiCalc_log_relative_round
+          tbl_t_igr_aiCalc_log_aggregate_size
+          t_igr_tiExp_aggregate_size
+        $false: [13] 0 00 000 0000
+          t_igr_tiCalc_log_relative_round_m_dt
+          t_igr_tiCalc_log_rate_tail
+          tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          t_igr_tiExp_relative_round_m_dt_x_rate_tail
+          tbl_t_igr_aiCalc_aggregate_size_else
+      cond-7(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1; => $true, 1 => $false)
+        $true: [14] 0 00 000 0000
+          tbl_t_igr_aiCountBytes
+            stateful Ingress.t_igr.ri_bytes   64
+          tbl_t_igr_aiDebugWriteBytes
+            stateful Ingress.t_igr.riBytes 1024
+          tbl_t_igr_aiCalc_past_head
+          tbl_t_igr_aiCalc_past_tail
+          t_igr_tiSetQueue
+            stateful Ingress.t_igr.queueCounter 1024
+egress: [15] 0 00 000
+  tbl_main197
+  tbl_main197_0
+  tbl_main198
+  cond-8(egress::port_0 == 128; => $true, 1 => $false)
+    $true: [16]
+        +--t_egr_dpt_1_merged_tbl
+        0+--t_egr_dpt_2_merged_tbl
+        00+--t_egr_dpt_3_merged_tbl
+        000+--t_egr_dpt_4_merged_tbl
+        0000+--t_egr_dpt_5_merged_tbl
+        00000+--t_egr_dpt_6_merged_tbl
+        000000+--t_egr_dpt_7_merged_tbl
+        0000000+--t_egr_dpt_8_merged_tbl
+        00000000+--t_egr_dpt_9_merged_tbl
+        000000000+--t_egr_dpt_10_merged_tbl
+      t_egr_dpt_1_merged_tbl
+        stateful Egress.t_egr.port_cts   32
+      t_egr_dpt_2_merged_tbl
+      t_egr_dpt_3_merged_tbl
+        stateful Egress.t_egr.flow_dst1 1024
+      t_egr_dpt_4_merged_tbl
+        stateful Egress.t_egr.flow_src1 1024
+      t_egr_dpt_5_merged_tbl
+      t_egr_dpt_6_merged_tbl
+        stateful Egress.t_egr.flow_dst2 1024
+      t_egr_dpt_7_merged_tbl
+        stateful Egress.t_egr.flow_src2 1024
+      t_egr_dpt_8_merged_tbl
+        stateful Egress.t_egr.flow_ct1 1024
+      t_egr_dpt_9_merged_tbl
+      t_egr_dpt_10_merged_tbl
+        stateful Egress.t_egr.flow_ct2 1024
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : cond-6
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : cond-7
+DepStagesThruDomFrontier postorder : cond-5
+DepStagesThruDomFrontier postorder : tbl_main197
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : cond-8
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 8
+GRAPH
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiToggleCebinae
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetPktLen
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetTs
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiForward
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcF
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcSaturated
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetRelativeRound
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetHeadq
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetTailq
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_head
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_tail
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiPrecompute_relative_round_test
+    cond-5 -- CONTROL_COND_FALSE --> cond-6
+    cond-5 -- CONTROL_COND_FALSE --> cond-7
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    cond-6 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_relative_round_m_dt
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_aggregate_size_else
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCountBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugWriteBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_head
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_tail
+    cond-7 -- CONTROL_COND_TRUE --> t_igr_tiSetQueue
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_1_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_2_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_3_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_4_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_5_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_6_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_7_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_8_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_9_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> cond-6
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> cond-7
+    t_igr_tiToggleCebinae -- ACTION_READ --> cond-7
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197 -- OUTPUT --> tbl_main197_0
+    tbl_main197_0 -- OUTPUT --> tbl_main198
+    tbl_main197_0 -- ACTION_READ --> cond-8
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_head
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> cond-8
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> tbl_main198
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiDrop_rotate
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcF
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_main197 -- ANTI_NEXT_TABLE_DATA --> tbl_main197_0
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-5 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE cond-5
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     t_igr_tiForward 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_main197 8 8
+ Stage #1
+     t_igr_tiRotateRoundTime 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiDrop_rotate 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     tbl_main197_0 7 7
+	- Edge OUTPUT tbl_main197
+ Stage #2
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     cond-8 5 5
+	- Edge ACTION_READ tbl_main197_0
+	- Edge ANTI_NEXT_TABLE_DATA tbl_main198
+     t_egr_dpt_2_merged_tbl 3 3
+	- Edge CONTROL_COND_TRUE cond-8
+     tbl_main198 6 6
+	- Edge OUTPUT tbl_main197_0
+ Stage #3
+     cond-6 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge IXBAR_READ tbl_main198
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #6
+     cond-7 3 3
+	- Edge ANTI_NEXT_TABLE_DATA tbl_t_igr_aiCalc_aggregate_size_else
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #8
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+FindDependencyGraph : Just Before PHV allocation
+ingress: [9]
+  cond-5(ingress::hdr.ethernet.ether_type == 4660; => $true, 1 => $false)
+    $true: [10]
+        +--t_igr_tiRotateF
+        0+--t_igr_tiRotateRoundTime
+        00+--t_igr_tiRotateHeadq
+        000+--t_igr_tiRotateTailq
+        0000+--t_igr_tiReadLastSize
+        00000+--tbl_t_igr_ai_rotate_bytes
+        000000+--tbl_t_igr_aiDebugLastSize
+        0000000+--t_igr_tiDrop_rotate
+      t_igr_tiRotateF
+      t_igr_tiRotateRoundTime
+        stateful Ingress.t_igr.ri_base_round_time    1
+      t_igr_tiRotateHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      t_igr_tiRotateTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiReadLastSize
+      tbl_t_igr_ai_rotate_bytes
+        stateful Ingress.t_igr.ri_bytes   64
+      tbl_t_igr_aiDebugLastSize
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      t_igr_tiDrop_rotate
+    $false: [11]
+        +--t_igr_tiToggleCebinae
+        0+--tbl_t_igr_aiSetPktLen
+        00+--tbl_t_igr_aiSetTs
+        000+--t_igr_tiForward
+        0000+--t_igr_tiCalcF
+        00000+--t_igr_tiCalcSaturated
+        000000+--tbl_t_igr_aiGetRelativeRound
+        0000000+--tbl_t_igr_aiGetHeadq
+        00000000+--tbl_t_igr_aiGetTailq
+        000000000+--t_igr_tiGetRates_head
+        0000000000+--t_igr_tiGetRates_tail
+        00000000000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        000000000000+--tbl_t_igr_aiPrecompute_relative_round_test
+        0000000000000+--cond-6
+        00000000000000+--cond-7
+      t_igr_tiToggleCebinae
+      tbl_t_igr_aiSetPktLen
+      tbl_t_igr_aiSetTs
+      t_igr_tiForward
+      t_igr_tiCalcF
+        stateful Ingress.t_igr.fCount 1024
+      t_igr_tiCalcSaturated
+      tbl_t_igr_aiGetRelativeRound
+        stateful Ingress.t_igr.ri_base_round_time    1
+      tbl_t_igr_aiGetHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      tbl_t_igr_aiGetTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiGetRates_head
+      t_igr_tiGetRates_tail
+      tbl_t_igr_aiCalc_relative_round_m_dt
+      tbl_t_igr_aiPrecompute_relative_round_test
+      cond-6(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1 => $false)
+        $true: [12] 0 00 000
+          t_igr_tiCalc_log_rate_head
+          t_igr_tiCalc_log_relative_round
+          tbl_t_igr_aiCalc_log_aggregate_size
+          t_igr_tiExp_aggregate_size
+        $false: [13] 0 00 000 0000
+          t_igr_tiCalc_log_relative_round_m_dt
+          t_igr_tiCalc_log_rate_tail
+          tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          t_igr_tiExp_relative_round_m_dt_x_rate_tail
+          tbl_t_igr_aiCalc_aggregate_size_else
+      cond-7(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1; => $true, 1 => $false)
+        $true: [14] 0 00 000 0000
+          tbl_t_igr_aiCountBytes
+            stateful Ingress.t_igr.ri_bytes   64
+          tbl_t_igr_aiDebugWriteBytes
+            stateful Ingress.t_igr.riBytes 1024
+          tbl_t_igr_aiCalc_past_head
+          tbl_t_igr_aiCalc_past_tail
+          t_igr_tiSetQueue
+            stateful Ingress.t_igr.queueCounter 1024
+egress: [15] 0 00
+  tbl_main197_0
+  tbl_main198
+  cond-8(egress::port_0 == 128; => $true, 1 => $false)
+    $true: [16]
+        +--t_egr_dpt_1_merged_tbl
+        0+--t_egr_dpt_2_merged_tbl
+        00+--t_egr_dpt_3_merged_tbl
+        000+--t_egr_dpt_4_merged_tbl
+        0000+--t_egr_dpt_5_merged_tbl
+        00000+--t_egr_dpt_6_merged_tbl
+        000000+--t_egr_dpt_7_merged_tbl
+        0000000+--t_egr_dpt_8_merged_tbl
+        00000000+--t_egr_dpt_9_merged_tbl
+        000000000+--t_egr_dpt_10_merged_tbl
+      t_egr_dpt_1_merged_tbl
+        stateful Egress.t_egr.port_cts   32
+      t_egr_dpt_2_merged_tbl
+      t_egr_dpt_3_merged_tbl
+        stateful Egress.t_egr.flow_dst1 1024
+      t_egr_dpt_4_merged_tbl
+        stateful Egress.t_egr.flow_src1 1024
+      t_egr_dpt_5_merged_tbl
+      t_egr_dpt_6_merged_tbl
+        stateful Egress.t_egr.flow_dst2 1024
+      t_egr_dpt_7_merged_tbl
+        stateful Egress.t_egr.flow_src2 1024
+      t_egr_dpt_8_merged_tbl
+        stateful Egress.t_egr.flow_ct1 1024
+      t_egr_dpt_9_merged_tbl
+      t_egr_dpt_10_merged_tbl
+        stateful Egress.t_egr.flow_ct2 1024
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : cond-6
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : cond-7
+DepStagesThruDomFrontier postorder : cond-5
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : cond-8
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiToggleCebinae
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetPktLen
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetTs
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiForward
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcF
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcSaturated
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetRelativeRound
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetHeadq
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetTailq
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_head
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_tail
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiPrecompute_relative_round_test
+    cond-5 -- CONTROL_COND_FALSE --> cond-6
+    cond-5 -- CONTROL_COND_FALSE --> cond-7
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    cond-6 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_relative_round_m_dt
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_aggregate_size_else
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCountBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugWriteBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_head
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_tail
+    cond-7 -- CONTROL_COND_TRUE --> t_igr_tiSetQueue
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_1_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_2_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_3_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_4_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_5_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_6_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_7_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_8_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_9_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> cond-6
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> cond-7
+    t_igr_tiToggleCebinae -- ACTION_READ --> cond-7
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> cond-8
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiDrop_rotate
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcF
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-5 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE cond-5
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     t_igr_tiForward 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiRotateRoundTime 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiDrop_rotate 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     cond-8 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_COND_TRUE cond-8
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+     t_egr_dpt_2_merged_tbl 3 3
+	- Edge CONTROL_COND_TRUE cond-8
+ Stage #2
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     cond-6 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     cond-7 3 3
+	- Edge ANTI_NEXT_TABLE_DATA tbl_t_igr_aiCalc_aggregate_size_else
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+ingress: [9]
+  cond-5(ingress::hdr.ethernet.ether_type == 4660; => $true, 1 => $false)
+    $true: [10]
+        +--t_igr_tiRotateF
+        1+--t_igr_tiRotateRoundTime
+        10+--t_igr_tiRotateHeadq
+        100+--t_igr_tiRotateTailq
+        1000+--t_igr_tiReadLastSize
+        10001+--tbl_t_igr_ai_rotate_bytes
+        100010+--tbl_t_igr_aiDebugLastSize
+        1000000+--t_igr_tiDrop_rotate
+      t_igr_tiRotateF{ E 6+0, 2 0K }
+      t_igr_tiRotateRoundTime{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time    1
+      t_igr_tiRotateHeadq{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_headq    1
+      t_igr_tiRotateTailq{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiReadLastSize{ E 6+0, 4 0K }
+      tbl_t_igr_ai_rotate_bytes
+        stateful Ingress.t_igr.ri_bytes   64
+      tbl_t_igr_aiDebugLastSize
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      t_igr_tiDrop_rotate{ T 16+0, 0 0K }
+    $false: [11]
+        +--t_igr_tiToggleCebinae
+        0+--tbl_t_igr_aiSetPktLen
+        00+--tbl_t_igr_aiSetTs
+        000+--t_igr_tiForward
+        0001+--t_igr_tiCalcF
+        00010+--t_igr_tiCalcSaturated
+        001000+--tbl_t_igr_aiGetRelativeRound
+        0000000+--tbl_t_igr_aiGetHeadq
+        00000000+--tbl_t_igr_aiGetTailq
+        000110010+--t_igr_tiGetRates_head
+        0001100010+--t_igr_tiGetRates_tail
+        00100010000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        001000100000+--tbl_t_igr_aiPrecompute_relative_round_test
+        0011101111111+--cond-6
+        11111111111111+--cond-7
+      t_igr_tiToggleCebinae
+      tbl_t_igr_aiSetPktLen
+      tbl_t_igr_aiSetTs
+      t_igr_tiForward{ E 54+1, 2 0K }
+      t_igr_tiCalcF{ E 54+1, 0 0K }
+        stateful Ingress.t_igr.fCount 1024
+      t_igr_tiCalcSaturated{ E -1+1, 0 0K }
+      tbl_t_igr_aiGetRelativeRound
+        stateful Ingress.t_igr.ri_base_round_time    1
+      tbl_t_igr_aiGetHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      tbl_t_igr_aiGetTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiGetRates_head{ E 38+0, 8 0K }
+      t_igr_tiGetRates_tail{ E 38+0, 8 0K }
+      tbl_t_igr_aiCalc_relative_round_m_dt
+      tbl_t_igr_aiPrecompute_relative_round_test
+      cond-6(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1 => $false)
+        $true: [12] 0 11 111
+          t_igr_tiCalc_log_rate_head{ T 32+0, 1 0K }
+          t_igr_tiCalc_log_relative_round{ T 32+0, 1 0K }
+          tbl_t_igr_aiCalc_log_aggregate_size
+          t_igr_tiExp_aggregate_size{ T 8+6, 4 0K }
+        $false: [13] 0 11 111 1111
+          t_igr_tiCalc_log_relative_round_m_dt{ T 32+0, 1 0K }
+          t_igr_tiCalc_log_rate_tail{ T 32+0, 1 0K }
+          tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          t_igr_tiExp_relative_round_m_dt_x_rate_tail{ T 8+6, 4 0K }
+          tbl_t_igr_aiCalc_aggregate_size_else
+      cond-7(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1; => $true, 1 => $false)
+        $true: [14] 1 10 101 1011
+          tbl_t_igr_aiCountBytes
+            stateful Ingress.t_igr.ri_bytes   64
+          tbl_t_igr_aiDebugWriteBytes
+            stateful Ingress.t_igr.riBytes 1024
+          tbl_t_igr_aiCalc_past_head
+          tbl_t_igr_aiCalc_past_tail
+          t_igr_tiSetQueue{ T 64+2, 0 0K }
+            stateful Ingress.t_igr.queueCounter 1024
+egress: [15] 0 11
+  tbl_main197_0
+  tbl_main198
+  cond-8(egress::port_0 == 128; => $true, 1 => $false)
+    $true: [16]
+        +--t_egr_dpt_1_merged_tbl
+        0+--t_egr_dpt_2_merged_tbl
+        10+--t_egr_dpt_3_merged_tbl
+        100+--t_egr_dpt_4_merged_tbl
+        1011+--t_egr_dpt_5_merged_tbl
+        11111+--t_egr_dpt_6_merged_tbl
+        111110+--t_egr_dpt_7_merged_tbl
+        1011100+--t_egr_dpt_8_merged_tbl
+        11111110+--t_egr_dpt_9_merged_tbl
+        111111101+--t_egr_dpt_10_merged_tbl
+      t_egr_dpt_1_merged_tbl
+        stateful Egress.t_egr.port_cts   32
+      t_egr_dpt_2_merged_tbl
+      t_egr_dpt_3_merged_tbl
+        stateful Egress.t_egr.flow_dst1 1024
+      t_egr_dpt_4_merged_tbl
+        stateful Egress.t_egr.flow_src1 1024
+      t_egr_dpt_5_merged_tbl
+      t_egr_dpt_6_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_dst2 1024
+      t_egr_dpt_7_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_src2 1024
+      t_egr_dpt_8_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_ct1 1024
+      t_egr_dpt_9_merged_tbl{ T 128+1, 0 0K }
+      t_egr_dpt_10_merged_tbl{ T 256+1, 0 0K }
+        stateful Egress.t_egr.flow_ct2 1024
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : cond-6
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : cond-7
+DepStagesThruDomFrontier postorder : cond-5
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : cond-8
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiToggleCebinae
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetPktLen
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetTs
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiForward
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcF
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcSaturated
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetRelativeRound
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetHeadq
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetTailq
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_head
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_tail
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiPrecompute_relative_round_test
+    cond-5 -- CONTROL_COND_FALSE --> cond-6
+    cond-5 -- CONTROL_COND_FALSE --> cond-7
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    cond-6 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_relative_round_m_dt
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_aggregate_size_else
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCountBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugWriteBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_head
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_tail
+    cond-7 -- CONTROL_COND_TRUE --> t_igr_tiSetQueue
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_1_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_2_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_3_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_4_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_5_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_6_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_7_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_8_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_9_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_aggregate_size
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiCalc_log_relative_round
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> cond-6
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> cond-7
+    t_igr_tiToggleCebinae -- ACTION_READ --> cond-7
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> cond-8
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiDrop_rotate
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcF
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-5 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE cond-5
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     t_igr_tiForward 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiRotateRoundTime 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiDrop_rotate 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     cond-8 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_COND_TRUE cond-8
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+     t_egr_dpt_2_merged_tbl 3 3
+	- Edge CONTROL_COND_TRUE cond-8
+ Stage #2
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     cond-6 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 1 1
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     cond-7 3 3
+	- Edge ANTI_NEXT_TABLE_DATA tbl_t_igr_aiCalc_aggregate_size_else
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+FindDependencyGraph : Before Table Placement
+ingress: [9]
+  cond-5(ingress::hdr.ethernet.ether_type == 4660; => $true, 1 => $false)
+    $true: [10]
+        +--t_igr_tiRotateF
+        1+--t_igr_tiRotateRoundTime
+        10+--t_igr_tiRotateHeadq
+        100+--t_igr_tiRotateTailq
+        1000+--t_igr_tiReadLastSize
+        10001+--tbl_t_igr_ai_rotate_bytes
+        100010+--tbl_t_igr_aiDebugLastSize
+        1000000+--t_igr_tiDrop_rotate
+      t_igr_tiRotateF{ E 6+0, 2 0K }
+      t_igr_tiRotateRoundTime{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time    1
+      t_igr_tiRotateHeadq{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_headq    1
+      t_igr_tiRotateTailq{ E 6+0, 0 0K }
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiReadLastSize{ E 6+0, 4 0K }
+      tbl_t_igr_ai_rotate_bytes
+        stateful Ingress.t_igr.ri_bytes   64
+      tbl_t_igr_aiDebugLastSize
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      t_igr_tiDrop_rotate{ T 16+0, 0 0K }
+    $false: [11]
+        +--t_igr_tiToggleCebinae
+        0+--tbl_t_igr_aiSetPktLen
+        00+--tbl_t_igr_aiSetTs
+        000+--t_igr_tiForward
+        0001+--t_igr_tiCalcF
+        00010+--t_igr_tiCalcSaturated
+        001000+--tbl_t_igr_aiGetRelativeRound
+        0000000+--tbl_t_igr_aiGetHeadq
+        00000000+--tbl_t_igr_aiGetTailq
+        000110010+--t_igr_tiGetRates_head
+        0001100010+--t_igr_tiGetRates_tail
+        00100010000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        001000100000+--tbl_t_igr_aiPrecompute_relative_round_test
+        0011101111111+--cond-6
+        11111111111111+--cond-7
+      t_igr_tiToggleCebinae
+      tbl_t_igr_aiSetPktLen
+      tbl_t_igr_aiSetTs
+      t_igr_tiForward{ E 54+1, 2 0K }
+      t_igr_tiCalcF{ E 54+1, 0 0K }
+        stateful Ingress.t_igr.fCount 1024
+      t_igr_tiCalcSaturated{ E -1+1, 0 0K }
+      tbl_t_igr_aiGetRelativeRound
+        stateful Ingress.t_igr.ri_base_round_time    1
+      tbl_t_igr_aiGetHeadq
+        stateful Ingress.t_igr.ri_headq    1
+      tbl_t_igr_aiGetTailq
+        stateful Ingress.t_igr.ri_tailq    1
+      t_igr_tiGetRates_head{ E 38+0, 8 0K }
+      t_igr_tiGetRates_tail{ E 38+0, 8 0K }
+      tbl_t_igr_aiCalc_relative_round_m_dt
+      tbl_t_igr_aiPrecompute_relative_round_test
+      cond-6(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1 => $false)
+        $true: [12] 0 11 111
+          t_igr_tiCalc_log_rate_head{ T 32+0, 1 0K }
+          t_igr_tiCalc_log_relative_round{ T 32+0, 1 0K }
+          tbl_t_igr_aiCalc_log_aggregate_size
+          t_igr_tiExp_aggregate_size{ T 8+6, 4 0K }
+        $false: [13] 0 11 111 1111
+          t_igr_tiCalc_log_relative_round_m_dt{ T 32+0, 1 0K }
+          t_igr_tiCalc_log_rate_tail{ T 32+0, 1 0K }
+          tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          t_igr_tiExp_relative_round_m_dt_x_rate_tail{ T 8+6, 4 0K }
+          tbl_t_igr_aiCalc_aggregate_size_else
+      cond-7(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1; => $true, 1 => $false)
+        $true: [14] 1 10 101 1011
+          tbl_t_igr_aiCountBytes
+            stateful Ingress.t_igr.ri_bytes   64
+          tbl_t_igr_aiDebugWriteBytes
+            stateful Ingress.t_igr.riBytes 1024
+          tbl_t_igr_aiCalc_past_head
+          tbl_t_igr_aiCalc_past_tail
+          t_igr_tiSetQueue{ T 64+2, 0 0K }
+            stateful Ingress.t_igr.queueCounter 1024
+egress: [15] 0 11
+  tbl_main197_0
+  tbl_main198
+  cond-8(egress::port_0 == 128; => $true, 1 => $false)
+    $true: [16]
+        +--t_egr_dpt_1_merged_tbl
+        0+--t_egr_dpt_2_merged_tbl
+        10+--t_egr_dpt_3_merged_tbl
+        100+--t_egr_dpt_4_merged_tbl
+        1011+--t_egr_dpt_5_merged_tbl
+        11111+--t_egr_dpt_6_merged_tbl
+        111110+--t_egr_dpt_7_merged_tbl
+        1011100+--t_egr_dpt_8_merged_tbl
+        11111110+--t_egr_dpt_9_merged_tbl
+        111111101+--t_egr_dpt_10_merged_tbl
+      t_egr_dpt_1_merged_tbl
+        stateful Egress.t_egr.port_cts   32
+      t_egr_dpt_2_merged_tbl
+      t_egr_dpt_3_merged_tbl
+        stateful Egress.t_egr.flow_dst1 1024
+      t_egr_dpt_4_merged_tbl
+        stateful Egress.t_egr.flow_src1 1024
+      t_egr_dpt_5_merged_tbl
+      t_egr_dpt_6_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_dst2 1024
+      t_egr_dpt_7_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_src2 1024
+      t_egr_dpt_8_merged_tbl{ T 128+1, 0 0K }
+        stateful Egress.t_egr.flow_ct1 1024
+      t_egr_dpt_9_merged_tbl{ T 128+1, 0 0K }
+      t_egr_dpt_10_merged_tbl{ T 256+1, 0 0K }
+        stateful Egress.t_egr.flow_ct2 1024
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : cond-6
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : cond-7
+DepStagesThruDomFrontier postorder : cond-5
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : cond-8
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    cond-5 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    cond-5 -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiToggleCebinae
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetPktLen
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiSetTs
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiForward
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcF
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiCalcSaturated
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetRelativeRound
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetHeadq
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiGetTailq
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_head
+    cond-5 -- CONTROL_COND_FALSE --> t_igr_tiGetRates_tail
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    cond-5 -- CONTROL_COND_FALSE --> tbl_t_igr_aiPrecompute_relative_round_test
+    cond-5 -- CONTROL_COND_FALSE --> cond-6
+    cond-5 -- CONTROL_COND_FALSE --> cond-7
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    cond-6 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    cond-6 -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_relative_round_m_dt
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiCalc_log_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    cond-6 -- CONTROL_COND_FALSE --> tbl_t_igr_aiCalc_aggregate_size_else
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCountBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugWriteBytes
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_head
+    cond-7 -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_past_tail
+    cond-7 -- CONTROL_COND_TRUE --> t_igr_tiSetQueue
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_1_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_2_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_3_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_4_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_5_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_6_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_7_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_8_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_9_merged_tbl
+    cond-8 -- CONTROL_COND_TRUE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_aggregate_size
+    t_igr_tiForward -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiCalc_log_relative_round
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiDebugWriteBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCountBytes
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    cond-6 -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_METADATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_METADATA --> tbl_t_igr_aiCalc_past_tail
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    cond-8 -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_METADATA --> t_egr_dpt_9_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> cond-6
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> cond-7
+    t_igr_tiToggleCebinae -- ACTION_READ --> cond-7
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> cond-8
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_8_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> cond-6
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiDrop_rotate
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> cond-6
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcF
+    t_igr_tiForward -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> cond-7
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> cond-8
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> cond-8
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     cond-5 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE cond-5
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     t_igr_tiForward 10 10
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_COND_FALSE cond-5
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiRotateRoundTime 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiDrop_rotate 0 0
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     cond-8 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_COND_TRUE cond-8
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+     t_egr_dpt_2_merged_tbl 3 3
+	- Edge CONTROL_COND_TRUE cond-8
+ Stage #2
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     cond-6 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE cond-6
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge CONTROL_COND_FALSE cond-6
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 1 1
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     cond-7 3 3
+	- Edge ANTI_NEXT_TABLE_DATA tbl_t_igr_aiCalc_aggregate_size_else
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+ingress: [9]
+  0: t_igr_tiForward(ingress::hdr.ethernet.ether_type == 4660; => $true, 1){ GE 54+10, 2 [1x1 1K 1K 1K 1K] }
+    $true: [10]
+        +--t_igr_tiRotateF
+        0+--t_igr_tiReadLastSize
+        00+--t_igr_tiDrop_rotate
+        000+--t_igr_tiRotateTailq
+        0000+--t_igr_tiRotateHeadq
+        00000+--t_igr_tiRotateRoundTime
+        000000+--tbl_t_igr_aiDebugLastSize
+        0000000+--tbl_t_igr_ai_rotate_bytes
+      5: t_igr_tiRotateF{ E 6+16, 2 [1x3 3K 3K 3K 3K] }
+      17: t_igr_tiReadLastSize{ E 6+32, 4 [1x1 1K 1K 1K 1K] }
+      18: t_igr_tiDrop_rotate(1 => $entry0)
+        $entry0, $miss: [20]
+      19: t_igr_tiRotateTailq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq    1
+        $entry0, $miss: [19]
+      1a: t_igr_tiRotateHeadq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq    1
+        $entry0, $miss: [18]
+      1b: t_igr_tiRotateRoundTime(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time    1
+        $entry0, $miss: [17]
+      25: tbl_t_igr_aiDebugLastSize{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      81: tbl_t_igr_ai_rotate_bytes{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes   64
+    $default: [11]
+        +--tbl_t_igr_aiSetTs
+        0+--t_igr_tiToggleCebinae
+        00+--tbl_t_igr_aiGetRelativeRound
+        000+--t_igr_tiCalcF
+        0000+--tbl_t_igr_aiGetTailq
+        00000+--tbl_t_igr_aiGetHeadq
+        000000+--tbl_t_igr_aiSetPktLen
+        0000000+--t_igr_tiCalcSaturated
+        00000000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        000000000+--t_igr_tiGetRates_tail
+        0000000000+--tbl_t_igr_aiPrecompute_relative_round_test
+        00000000000+--t_igr_tiGetRates_head
+        000000000000+--t_igr_tiCalc_log_rate_tail
+        0000000000000+--tbl_t_igr_aiCountBytes
+      1: tbl_t_igr_aiSetTs
+      4: t_igr_tiToggleCebinae{ E 0+8, 4 0K }
+      10: tbl_t_igr_aiGetRelativeRound{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time    1
+      11: t_igr_tiCalcF{ E 54+11, 0 [1x1 1K 1K 1K 1K] }
+        stateful Ingress.t_igr.fCount 1024
+      12: tbl_t_igr_aiGetTailq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq    1
+      13: tbl_t_igr_aiGetHeadq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq    1
+      15: tbl_t_igr_aiSetPktLen
+      16: t_igr_tiCalcSaturated{ E -1+1, 0 [1x5 5K] }
+      20: tbl_t_igr_aiCalc_relative_round_m_dt{ E 0+32, 4 0K }
+      21: t_igr_tiGetRates_tail{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      22: tbl_t_igr_aiPrecompute_relative_round_test{ E 0+32, 4 0K }
+      23: t_igr_tiGetRates_head{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      30: t_igr_tiCalc_log_rate_tail(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1){ GT 32+0, 1 0K }
+        $true: [12] 0 00 000
+          32: t_igr_tiCalc_log_relative_round{ T 32+0, 1 0K }
+          33: t_igr_tiCalc_log_rate_head{ T 32+0, 1 0K }
+          41: tbl_t_igr_aiCalc_log_aggregate_size
+          70: t_igr_tiExp_aggregate_size{ T 8+38, 4 0K }
+        $default: [13] 0 00 000
+          31: t_igr_tiCalc_log_relative_round_m_dt{ T 32+0, 1 0K }
+          40: tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          50: t_igr_tiExp_relative_round_m_dt_x_rate_tail{ T 8+38, 4 0K }
+          60: tbl_t_igr_aiCalc_aggregate_size_else
+      80: tbl_t_igr_aiCountBytes(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1;, 1 => $false){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes   64
+        $default: [14] 0 00 000
+          90: tbl_t_igr_aiCalc_past_head
+          91: tbl_t_igr_aiDebugWriteBytes{ E 0+10, 0 0K }
+            stateful Ingress.t_igr.riBytes 1024
+          a0: tbl_t_igr_aiCalc_past_tail
+          b0: t_igr_tiSetQueue{ T 64+12, 0 0K }
+            stateful Ingress.t_igr.queueCounter 1024
+        $false: [21]
+egress: [15] 0 00
+  2: tbl_main197_0
+  3: tbl_main198
+  14: t_egr_dpt_2_merged_tbl(egress::port_0 == 128;, 1 => $false)
+    $default: [16]
+        +--t_egr_dpt_1_merged_tbl
+        0+--t_egr_dpt_4_merged_tbl
+        00+--t_egr_dpt_3_merged_tbl
+        000+--t_egr_dpt_5_merged_tbl
+        0000+--t_egr_dpt_7_merged_tbl
+        00000+--t_egr_dpt_6_merged_tbl
+        000000+--t_egr_dpt_8_merged_tbl
+        0000000+--t_egr_dpt_9_merged_tbl
+        00000000+--t_egr_dpt_10_merged_tbl
+      24: t_egr_dpt_1_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.port_cts   32
+      34: t_egr_dpt_4_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_src1 1024
+      35: t_egr_dpt_3_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_dst1 1024
+      42: t_egr_dpt_5_merged_tbl
+      51: t_egr_dpt_7_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_src2 1024
+      52: t_egr_dpt_6_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_dst2 1024
+      53: t_egr_dpt_8_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_ct1 1024
+      61: t_egr_dpt_9_merged_tbl{ T 128+1, 0 0K }
+      71: t_egr_dpt_10_merged_tbl{ T 256+12, 0 0K }
+        stateful Egress.t_egr.flow_ct2 1024
+    $false: [22]
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetTs
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiToggleCebinae
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcF
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetTailq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetHeadq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetPktLen
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcSaturated
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_head
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiSetQueue
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiToggleCebinae -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> t_egr_dpt_2_merged_tbl
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     t_igr_tiForward 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     t_igr_tiDrop_rotate 0 0
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateRoundTime 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     t_egr_dpt_2_merged_tbl 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_egr_dpt_2_merged_tbl
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+ Stage #2
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+FindDependencyGraph : After Table Placement
+ingress: [9]
+  0: t_igr_tiForward(ingress::hdr.ethernet.ether_type == 4660; => $true, 1){ GE 54+10, 2 [1x1 1K 1K 1K 1K] }
+    $true: [10]
+        +--t_igr_tiRotateF
+        1+--t_igr_tiReadLastSize
+        00+--t_igr_tiDrop_rotate
+        100+--t_igr_tiRotateTailq
+        1000+--t_igr_tiRotateHeadq
+        10000+--t_igr_tiRotateRoundTime
+        110000+--tbl_t_igr_aiDebugLastSize
+        1100000+--tbl_t_igr_ai_rotate_bytes
+      5: t_igr_tiRotateF{ E 6+16, 2 [1x3 3K 3K 3K 3K] }
+      17: t_igr_tiReadLastSize{ E 6+32, 4 [1x1 1K 1K 1K 1K] }
+      18: t_igr_tiDrop_rotate(1 => $entry0)
+        $entry0, $miss: [20]
+      19: t_igr_tiRotateTailq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq 1   
+        $entry0, $miss: [19]
+      1a: t_igr_tiRotateHeadq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq 1   
+        $entry0, $miss: [18]
+      1b: t_igr_tiRotateRoundTime(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time 1   
+        $entry0, $miss: [17]
+      25: tbl_t_igr_aiDebugLastSize{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      81: tbl_t_igr_ai_rotate_bytes{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes 64  
+    $default: [11]
+        +--tbl_t_igr_aiSetTs
+        0+--t_igr_tiToggleCebinae
+        10+--tbl_t_igr_aiGetRelativeRound
+        000+--t_igr_tiCalcF
+        0000+--tbl_t_igr_aiGetTailq
+        00000+--tbl_t_igr_aiGetHeadq
+        000000+--tbl_t_igr_aiSetPktLen
+        0000000+--t_igr_tiCalcSaturated
+        10100000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        000110000+--t_igr_tiGetRates_tail
+        1010000000+--tbl_t_igr_aiPrecompute_relative_round_test
+        00010100000+--t_igr_tiGetRates_head
+        101111001111+--t_igr_tiCalc_log_rate_tail
+        1111111111111+--tbl_t_igr_aiCountBytes
+      1: tbl_t_igr_aiSetTs
+      4: t_igr_tiToggleCebinae{ E 0+8, 4 0K }
+      10: tbl_t_igr_aiGetRelativeRound{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time 1   
+      11: t_igr_tiCalcF{ E 54+11, 0 [1x1 1K 1K 1K 1K] }
+        stateful Ingress.t_igr.fCount 1024
+      12: tbl_t_igr_aiGetTailq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq 1   
+      13: tbl_t_igr_aiGetHeadq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq 1   
+      15: tbl_t_igr_aiSetPktLen
+      16: t_igr_tiCalcSaturated{ E -1+1, 0 [1x5 5K] }
+      20: tbl_t_igr_aiCalc_relative_round_m_dt{ E 0+32, 4 0K }
+      21: t_igr_tiGetRates_tail{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      22: tbl_t_igr_aiPrecompute_relative_round_test{ E 0+32, 4 0K }
+      23: t_igr_tiGetRates_head{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      30: t_igr_tiCalc_log_rate_tail(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1){ GT 32+0, 1 0K }
+        $true: [12] 0 11 111
+          32: t_igr_tiCalc_log_relative_round{ T 32+0, 1 0K }
+          33: t_igr_tiCalc_log_rate_head{ T 32+0, 1 0K }
+          41: tbl_t_igr_aiCalc_log_aggregate_size
+          70: t_igr_tiExp_aggregate_size{ T 8+38, 4 0K }
+        $default: [13] 1 11 111
+          31: t_igr_tiCalc_log_relative_round_m_dt{ T 32+0, 1 0K }
+          40: tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          50: t_igr_tiExp_relative_round_m_dt_x_rate_tail{ T 8+38, 4 0K }
+          60: tbl_t_igr_aiCalc_aggregate_size_else
+      80: tbl_t_igr_aiCountBytes(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1;, 1 => $false){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes 64  
+        $default: [14] 0 10 101
+          90: tbl_t_igr_aiCalc_past_head
+          91: tbl_t_igr_aiDebugWriteBytes{ E 0+10, 0 0K }
+            stateful Ingress.t_igr.riBytes 1024
+          a0: tbl_t_igr_aiCalc_past_tail
+          b0: t_igr_tiSetQueue{ T 64+12, 0 0K }
+            stateful Ingress.t_igr.queueCounter 1024
+        $false: [21]
+egress: [15] 0 11
+  2: tbl_main197_0
+  3: tbl_main198
+  14: t_egr_dpt_2_merged_tbl(egress::port_0 == 128;, 1 => $false)
+    $default: [16]
+        +--t_egr_dpt_1_merged_tbl
+        1+--t_egr_dpt_4_merged_tbl
+        10+--t_egr_dpt_3_merged_tbl
+        111+--t_egr_dpt_5_merged_tbl
+        1111+--t_egr_dpt_7_merged_tbl
+        11110+--t_egr_dpt_6_merged_tbl
+        111100+--t_egr_dpt_8_merged_tbl
+        1111110+--t_egr_dpt_9_merged_tbl
+        11111101+--t_egr_dpt_10_merged_tbl
+      24: t_egr_dpt_1_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.port_cts 32  
+      34: t_egr_dpt_4_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_src1 1024
+      35: t_egr_dpt_3_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_dst1 1024
+      42: t_egr_dpt_5_merged_tbl
+      51: t_egr_dpt_7_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_src2 1024
+      52: t_egr_dpt_6_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_dst2 1024
+      53: t_egr_dpt_8_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_ct1 1024
+      61: t_egr_dpt_9_merged_tbl{ T 128+1, 0 0K }
+      71: t_egr_dpt_10_merged_tbl{ T 256+12, 0 0K }
+        stateful Egress.t_egr.flow_ct2 1024
+    $false: [22]
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetTs
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiToggleCebinae
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcF
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetTailq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetHeadq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetPktLen
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcSaturated
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_head
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiSetQueue
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiToggleCebinae -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> t_egr_dpt_2_merged_tbl
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     t_igr_tiForward 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     t_igr_tiDrop_rotate 0 0
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateRoundTime 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     t_egr_dpt_2_merged_tbl 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_egr_dpt_2_merged_tbl
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+ Stage #2
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+
+FindDependencyGraph : Power Calculation
+ingress: [9]
+  0: t_igr_tiForward(ingress::hdr.ethernet.ether_type == 4660; => $true, 1){ GE 54+10, 2 [1x1 1K 1K 1K 1K] }
+    $true: [10]
+        +--t_igr_tiRotateF
+        1+--t_igr_tiReadLastSize
+        00+--t_igr_tiDrop_rotate
+        100+--t_igr_tiRotateTailq
+        1000+--t_igr_tiRotateHeadq
+        10000+--t_igr_tiRotateRoundTime
+        110000+--tbl_t_igr_aiDebugLastSize
+        1100000+--tbl_t_igr_ai_rotate_bytes
+      5: t_igr_tiRotateF{ E 6+16, 2 [1x3 3K 3K 3K 3K] }
+      17: t_igr_tiReadLastSize{ E 6+32, 4 [1x1 1K 1K 1K 1K] }
+      18: t_igr_tiDrop_rotate(1 => $entry0)
+        $entry0, $miss: [20]
+      19: t_igr_tiRotateTailq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq 1   
+        $entry0, $miss: [19]
+      1a: t_igr_tiRotateHeadq(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq 1   
+        $entry0, $miss: [18]
+      1b: t_igr_tiRotateRoundTime(ingress::t_igr_f == 128; => $entry0, 1){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time 1   
+        $entry0, $miss: [17]
+      25: tbl_t_igr_aiDebugLastSize{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.riRotateLastSize 1024
+      81: tbl_t_igr_ai_rotate_bytes{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes 64  
+    $default: [11]
+        +--tbl_t_igr_aiSetTs
+        0+--t_igr_tiToggleCebinae
+        10+--tbl_t_igr_aiGetRelativeRound
+        000+--t_igr_tiCalcF
+        0000+--tbl_t_igr_aiGetTailq
+        00000+--tbl_t_igr_aiGetHeadq
+        000000+--tbl_t_igr_aiSetPktLen
+        0000000+--t_igr_tiCalcSaturated
+        10100000+--tbl_t_igr_aiCalc_relative_round_m_dt
+        000110000+--t_igr_tiGetRates_tail
+        1010000000+--tbl_t_igr_aiPrecompute_relative_round_test
+        00010100000+--t_igr_tiGetRates_head
+        101111001111+--t_igr_tiCalc_log_rate_tail
+        1111111111111+--tbl_t_igr_aiCountBytes
+      1: tbl_t_igr_aiSetTs
+      4: t_igr_tiToggleCebinae{ E 0+8, 4 0K }
+      10: tbl_t_igr_aiGetRelativeRound{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_base_round_time 1   
+      11: t_igr_tiCalcF{ E 54+11, 0 [1x1 1K 1K 1K 1K] }
+        stateful Ingress.t_igr.fCount 1024
+      12: tbl_t_igr_aiGetTailq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_tailq 1   
+      13: tbl_t_igr_aiGetHeadq{ E 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_headq 1   
+      15: tbl_t_igr_aiSetPktLen
+      16: t_igr_tiCalcSaturated{ E -1+1, 0 [1x5 5K] }
+      20: tbl_t_igr_aiCalc_relative_round_m_dt{ E 0+32, 4 0K }
+      21: t_igr_tiGetRates_tail{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      22: tbl_t_igr_aiPrecompute_relative_round_test{ E 0+32, 4 0K }
+      23: t_igr_tiGetRates_head{ E 38+32, 8 [1x1 1K 1K 1K 1K] }
+      30: t_igr_tiCalc_log_rate_tail(ingress::t_igr_dT_minus_relative_round == 0; => $true, 1){ GT 32+0, 1 0K }
+        $true: [12] 0 11 111
+          32: t_igr_tiCalc_log_relative_round{ T 32+0, 1 0K }
+          33: t_igr_tiCalc_log_rate_head{ T 32+0, 1 0K }
+          41: tbl_t_igr_aiCalc_log_aggregate_size
+          70: t_igr_tiExp_aggregate_size{ T 8+38, 4 0K }
+        $default: [13] 1 11 111
+          31: t_igr_tiCalc_log_relative_round_m_dt{ T 32+0, 1 0K }
+          40: tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+          50: t_igr_tiExp_relative_round_m_dt_x_rate_tail{ T 8+38, 4 0K }
+          60: tbl_t_igr_aiCalc_aggregate_size_else
+      80: tbl_t_igr_aiCountBytes(ingress::t_igr_saturated == 1 && ingress::t_igr_useCebinae == 1;, 1 => $false){ GE 0+10, 0 0K }
+        stateful Ingress.t_igr.ri_bytes 64  
+        $default: [14] 0 10 101
+          90: tbl_t_igr_aiCalc_past_head
+          91: tbl_t_igr_aiDebugWriteBytes{ E 0+10, 0 0K }
+            stateful Ingress.t_igr.riBytes 1024
+          a0: tbl_t_igr_aiCalc_past_tail
+          b0: t_igr_tiSetQueue{ T 64+12, 0 0K }
+            stateful Ingress.t_igr.queueCounter 1024
+        $false: [21]
+egress: [15] 0 11
+  2: tbl_main197_0
+  3: tbl_main198
+  14: t_egr_dpt_2_merged_tbl(egress::port_0 == 128;, 1 => $false)
+    $default: [16]
+        +--t_egr_dpt_1_merged_tbl
+        1+--t_egr_dpt_4_merged_tbl
+        10+--t_egr_dpt_3_merged_tbl
+        111+--t_egr_dpt_5_merged_tbl
+        1111+--t_egr_dpt_7_merged_tbl
+        11110+--t_egr_dpt_6_merged_tbl
+        111100+--t_egr_dpt_8_merged_tbl
+        1111110+--t_egr_dpt_9_merged_tbl
+        11111101+--t_egr_dpt_10_merged_tbl
+      24: t_egr_dpt_1_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.port_cts 32  
+      34: t_egr_dpt_4_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_src1 1024
+      35: t_egr_dpt_3_merged_tbl{ E 0+10, 0 0K }
+        stateful Egress.t_egr.flow_dst1 1024
+      42: t_egr_dpt_5_merged_tbl
+      51: t_egr_dpt_7_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_src2 1024
+      52: t_egr_dpt_6_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_dst2 1024
+      53: t_egr_dpt_8_merged_tbl{ T 128+12, 0 0K }
+        stateful Egress.t_egr.flow_ct1 1024
+      61: t_egr_dpt_9_merged_tbl{ T 128+1, 0 0K }
+      71: t_egr_dpt_10_merged_tbl{ T 256+12, 0 0K }
+        stateful Egress.t_egr.flow_ct2 1024
+    $false: [22]
+
+DepStagesThruDomFrontier postorder : t_igr_tiRotateF
+DepStagesThruDomFrontier postorder : t_igr_tiReadLastSize
+DepStagesThruDomFrontier postorder : t_igr_tiDrop_rotate
+DepStagesThruDomFrontier postorder : t_igr_tiRotateTailq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateHeadq
+DepStagesThruDomFrontier postorder : t_igr_tiRotateRoundTime
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugLastSize
+DepStagesThruDomFrontier postorder : tbl_t_igr_ai_rotate_bytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetTs
+DepStagesThruDomFrontier postorder : t_igr_tiToggleCebinae
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetRelativeRound
+DepStagesThruDomFrontier postorder : t_igr_tiCalcF
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetTailq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiGetHeadq
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiSetPktLen
+DepStagesThruDomFrontier postorder : t_igr_tiCalcSaturated
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_relative_round_m_dt
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiPrecompute_relative_round_test
+DepStagesThruDomFrontier postorder : t_igr_tiGetRates_head
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiExp_aggregate_size
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_relative_round_m_dt
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : t_igr_tiExp_relative_round_m_dt_x_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_aggregate_size_else
+DepStagesThruDomFrontier postorder : t_igr_tiCalc_log_rate_tail
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_head
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiDebugWriteBytes
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCalc_past_tail
+DepStagesThruDomFrontier postorder : t_igr_tiSetQueue
+DepStagesThruDomFrontier postorder : tbl_t_igr_aiCountBytes
+DepStagesThruDomFrontier postorder : t_igr_tiForward
+DepStagesThruDomFrontier postorder : tbl_main197_0
+DepStagesThruDomFrontier postorder : tbl_main198
+DepStagesThruDomFrontier postorder : t_egr_dpt_1_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_4_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_3_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_5_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_7_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_6_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_8_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_9_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_10_merged_tbl
+DepStagesThruDomFrontier postorder : t_egr_dpt_2_merged_tbl
+    Maximum stage number according to dependences: 
+      INGRESS: 10
+      EGRESS: 6
+GRAPH
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateF
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiReadLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiDrop_rotate
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateTailq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateHeadq
+    t_igr_tiForward -- CONTROL_COND_TRUE --> t_igr_tiRotateRoundTime
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiForward -- CONTROL_COND_TRUE --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetTs
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiToggleCebinae
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcF
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetTailq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiGetHeadq
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiSetPktLen
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalcSaturated
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiGetRates_head
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiForward -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_relative_round
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_COND_TRUE --> t_igr_tiExp_aggregate_size
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_aggregate_size_else
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_head
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCountBytes -- CONTROL_DEFAULT_NEXT_TABLE --> t_igr_tiSetQueue
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_2_merged_tbl -- CONTROL_DEFAULT_NEXT_TABLE --> t_egr_dpt_10_merged_tbl
+    t_igr_tiRotateF -- IXBAR_READ --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ACTION_READ --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    t_igr_tiReadLastSize -- IXBAR_READ --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- IXBAR_READ --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiForward -- ACTION_READ --> t_igr_tiCalcF
+    t_igr_tiForward -- IXBAR_READ --> t_igr_tiCalcSaturated
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiCalc_relative_round_m_dt
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- IXBAR_READ --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetRelativeRound -- ACTION_READ --> tbl_t_igr_aiPrecompute_relative_round_test
+    t_igr_tiCalcF -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- IXBAR_READ --> t_igr_tiGetRates_head
+    tbl_t_igr_aiPrecompute_relative_round_test -- ACTION_READ --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- IXBAR_READ --> t_igr_tiCalc_log_rate_tail
+    tbl_t_igr_aiGetRelativeRound -- IXBAR_READ --> t_igr_tiCalc_log_relative_round
+    t_igr_tiGetRates_head -- IXBAR_READ --> t_igr_tiCalc_log_rate_head
+    t_igr_tiCalc_log_rate_head -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round -- ACTION_READ --> tbl_t_igr_aiCalc_log_aggregate_size
+    tbl_t_igr_aiCalc_log_aggregate_size -- IXBAR_READ --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_relative_round_m_dt -- IXBAR_READ --> t_igr_tiCalc_log_relative_round_m_dt
+    t_igr_tiCalc_log_relative_round_m_dt -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_igr_tiCalc_log_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- IXBAR_READ --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ACTION_READ --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_igr_tiCalcSaturated -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiToggleCebinae -- ACTION_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCalc_aggregate_size_else -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiCountBytes -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiGetRates_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_head
+    t_igr_tiCalcF -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCountBytes -- IXBAR_READ --> tbl_t_igr_aiDebugWriteBytes
+    tbl_t_igr_aiCalc_past_head -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    t_igr_tiGetRates_tail -- ACTION_READ --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_tail -- IXBAR_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetHeadq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_t_igr_aiGetTailq -- ACTION_READ --> t_igr_tiSetQueue
+    tbl_main197_0 -- ACTION_READ --> t_egr_dpt_2_merged_tbl
+    tbl_main197_0 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_1_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ACTION_READ --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_1_merged_tbl -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ACTION_READ --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_9_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_7_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_5_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_4_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_2_merged_tbl -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_main198 -- IXBAR_READ --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_past_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_past_tail
+    tbl_t_igr_aiCalc_past_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiSetQueue
+    tbl_t_igr_aiCalc_aggregate_size_else -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_aggregate_size -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiExp_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_aggregate_size_else
+    t_egr_dpt_9_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_log_aggregate_size -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_aggregate_size
+    tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiExp_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_7_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_6_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiCalc_log_rate_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_igr_tiCalc_log_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_5_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    tbl_t_igr_aiCalc_relative_round_m_dt -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_tail -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiPrecompute_relative_round_test -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiGetRates_head -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalc_log_relative_round -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_log_aggregate_size
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_4_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_5_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_7_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_6_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_9_merged_tbl
+    t_egr_dpt_3_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_10_merged_tbl
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiReadLastSize -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCalc_relative_round_m_dt
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiPrecompute_relative_round_test
+    tbl_t_igr_aiGetRelativeRound -- ANTI_NEXT_TABLE_DATA --> t_igr_tiCalc_log_rate_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    t_igr_tiCalcF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_igr_tiCalcSaturated -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_4_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_3_merged_tbl
+    t_egr_dpt_1_merged_tbl -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_8_merged_tbl
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiReadLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateTailq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateHeadq
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> t_igr_tiRotateRoundTime
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiDebugLastSize
+    t_igr_tiRotateF -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_ai_rotate_bytes
+    tbl_t_igr_aiSetTs -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiGetRelativeRound
+    t_igr_tiToggleCebinae -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_tail
+    tbl_t_igr_aiGetTailq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> t_igr_tiGetRates_head
+    tbl_t_igr_aiGetHeadq -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_t_igr_aiSetPktLen -- ANTI_NEXT_TABLE_DATA --> tbl_t_igr_aiCountBytes
+    tbl_main197_0 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+    tbl_main198 -- ANTI_NEXT_TABLE_DATA --> t_egr_dpt_2_merged_tbl
+MIN STAGE INFO
+    Each table also indicates its dependency chain length
+    First number refers to a dependency chain from which each tables are not split
+    Second number refers to a dependency chain from which each tables are split as on  last allocation pass
+ Stage #0
+     t_igr_tiForward 10 10
+     t_igr_tiRotateF 2 2
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     t_igr_tiDrop_rotate 0 0
+	- Edge CONTROL_COND_TRUE t_igr_tiForward
+     tbl_t_igr_aiSetTs 10 10
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     t_igr_tiToggleCebinae 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetTailq 9 9
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiGetHeadq 8 8
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_t_igr_aiSetPktLen 4 4
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiForward
+     tbl_main197_0 6 6
+     tbl_main198 6 6
+ Stage #1
+     t_igr_tiReadLastSize 1 1
+	- Edge IXBAR_READ t_igr_tiRotateF
+     t_igr_tiRotateTailq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateHeadq 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     t_igr_tiRotateRoundTime 0 0
+	- Edge ACTION_READ t_igr_tiRotateF
+     tbl_t_igr_aiGetRelativeRound 9 9
+	- Edge IXBAR_READ tbl_t_igr_aiSetTs
+     t_igr_tiCalcF 9 9
+	- Edge ACTION_READ t_igr_tiForward
+     t_igr_tiCalcSaturated 4 4
+	- Edge IXBAR_READ t_igr_tiForward
+     t_egr_dpt_2_merged_tbl 5 5
+	- Edge ACTION_READ tbl_main197_0
+     t_egr_dpt_1_merged_tbl 5 5
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_egr_dpt_2_merged_tbl
+	- Edge IXBAR_READ tbl_main197_0
+	- Edge IXBAR_READ tbl_main198
+ Stage #2
+     tbl_t_igr_aiDebugLastSize 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_ai_rotate_bytes 0 0
+	- Edge IXBAR_READ t_igr_tiReadLastSize
+     tbl_t_igr_aiCalc_relative_round_m_dt 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_tail 8 8
+	- Edge IXBAR_READ t_igr_tiCalcF
+     tbl_t_igr_aiPrecompute_relative_round_test 8 8
+	- Edge ACTION_READ tbl_t_igr_aiGetRelativeRound
+     t_igr_tiGetRates_head 7 7
+	- Edge IXBAR_READ t_igr_tiCalcF
+     t_egr_dpt_4_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+     t_egr_dpt_3_merged_tbl 4 4
+	- Edge IXBAR_READ t_egr_dpt_1_merged_tbl
+ Stage #3
+     t_igr_tiCalc_log_rate_tail 7 7
+	- Edge ACTION_READ tbl_t_igr_aiPrecompute_relative_round_test
+	- Edge IXBAR_READ t_igr_tiGetRates_tail
+     t_igr_tiCalc_log_relative_round 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+     t_igr_tiCalc_log_rate_head 6 6
+	- Edge CONTROL_COND_TRUE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ t_igr_tiGetRates_head
+     t_igr_tiCalc_log_relative_round_m_dt 7 7
+	- Edge CONTROL_DEFAULT_NEXT_TABLE t_igr_tiCalc_log_rate_tail
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_relative_round_m_dt
+     t_egr_dpt_5_merged_tbl 3 3
+	- Edge ACTION_READ t_egr_dpt_3_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_4_merged_tbl
+ Stage #4
+     tbl_t_igr_aiCalc_log_aggregate_size 5 5
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_head
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round
+     tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail 6 6
+	- Edge ACTION_READ t_igr_tiCalc_log_relative_round_m_dt
+	- Edge ACTION_READ t_igr_tiCalc_log_rate_tail
+     t_egr_dpt_7_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_6_merged_tbl 2 2
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+     t_egr_dpt_8_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_5_merged_tbl
+ Stage #5
+     t_igr_tiExp_aggregate_size 4 4
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_aggregate_size
+     t_igr_tiExp_relative_round_m_dt_x_rate_tail 5 5
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_log_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_9_merged_tbl 1 1
+	- Edge ACTION_READ t_egr_dpt_6_merged_tbl
+	- Edge ACTION_READ t_egr_dpt_7_merged_tbl
+ Stage #6
+     tbl_t_igr_aiCalc_aggregate_size_else 4 4
+	- Edge ACTION_READ t_igr_tiExp_relative_round_m_dt_x_rate_tail
+     t_egr_dpt_10_merged_tbl 0 0
+	- Edge IXBAR_READ t_egr_dpt_9_merged_tbl
+ Stage #7
+     tbl_t_igr_aiCountBytes 3 3
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_aggregate_size_else
+ Stage #8
+     tbl_t_igr_aiCalc_past_head 2 2
+	- Edge ACTION_READ tbl_t_igr_aiCountBytes
+     tbl_t_igr_aiDebugWriteBytes 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCountBytes
+ Stage #9
+     tbl_t_igr_aiCalc_past_tail 1 1
+	- Edge ACTION_READ tbl_t_igr_aiCalc_past_head
+ Stage #10
+     t_igr_tiSetQueue 0 0
+	- Edge IXBAR_READ tbl_t_igr_aiCalc_past_tail
+

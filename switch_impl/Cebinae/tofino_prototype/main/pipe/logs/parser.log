@@ -1,0 +1,244 @@
+rewrite extract inbuf bit[16..63] to ingress::ig_intr_md.ingress_mac_tstamp; as:
+  PHV: extract inbuf bit[56..63] to PHV-allocated ingress::ig_intr_md.ingress_mac_tstamp[7:0];
+  PHV: extract inbuf bit[32..55] to PHV-allocated ingress::ig_intr_md.ingress_mac_tstamp[31:8];
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::ig_intr_md.ingress_mac_tstamp[47:32];
+rewrite extract inbuf bit[7..15] to ingress::md.ingress_port[8:0]; as:
+  PHV: extract inbuf bit[7..15] to PHV-allocated ingress::md.ingress_port[8:0];
+rewrite extract inbuf bit[32..47] to ingress::hdr.pktgen.packet_id; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated ingress::hdr.pktgen.packet_id;
+rewrite extract constant 0 to ingress::hdr.ip.$valid; as:
+Skipping extract of extract constant 0 to ingress::hdr.ip.$valid; to 0
+rewrite extract inbuf bit[0..47] to ingress::hdr.ethernet.dst_addr; as:
+  PHV: extract inbuf bit[16..47] to PHV-allocated ingress::hdr.ethernet.dst_addr[31:0];
+  PHV: extract inbuf bit[0..15] to PHV-allocated ingress::hdr.ethernet.dst_addr[47:32];
+rewrite extract inbuf bit[48..95] to ingress::hdr.ethernet.src_addr; as:
+  PHV: extract inbuf bit[64..95] to PHV-allocated ingress::hdr.ethernet.src_addr[31:0];
+  PHV: extract inbuf bit[48..63] to PHV-allocated ingress::hdr.ethernet.src_addr[47:32];
+rewrite extract inbuf bit[96..111] to ingress::hdr.ethernet.ether_type; as:
+  PHV: extract inbuf bit[96..111] to PHV-allocated ingress::hdr.ethernet.ether_type;
+rewrite extract constant 1 to ingress::hdr.ethernet.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.ethernet.$valid;
+rewrite extract inbuf bit[0..3] to ingress::hdr.ip.version; as:
+  PHV: extract inbuf bit[0..3] to PHV-allocated ingress::hdr.ip.version;
+rewrite extract inbuf bit[4..7] to ingress::hdr.ip.ihl; as:
+  PHV: extract inbuf bit[4..7] to PHV-allocated ingress::hdr.ip.ihl;
+rewrite extract inbuf bit[8..15] to ingress::hdr.ip.tos; as:
+  PHV: extract inbuf bit[8..15] to PHV-allocated ingress::hdr.ip.tos;
+rewrite extract inbuf bit[16..31] to ingress::hdr.ip.total_len; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::hdr.ip.total_len;
+rewrite extract inbuf bit[32..47] to ingress::hdr.ip.identification; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated ingress::hdr.ip.identification;
+rewrite extract inbuf bit[48..50] to ingress::hdr.ip.flags; as:
+  PHV: extract inbuf bit[48..50] to PHV-allocated ingress::hdr.ip.flags;
+rewrite extract inbuf bit[51..63] to ingress::hdr.ip.frag_offset; as:
+  PHV: extract inbuf bit[51..63] to PHV-allocated ingress::hdr.ip.frag_offset;
+rewrite extract inbuf bit[64..71] to ingress::hdr.ip.ttl; as:
+  PHV: extract inbuf bit[64..71] to PHV-allocated ingress::hdr.ip.ttl;
+rewrite extract inbuf bit[72..79] to ingress::hdr.ip.protocol; as:
+  PHV: extract inbuf bit[72..79] to PHV-allocated ingress::hdr.ip.protocol;
+rewrite extract inbuf bit[80..95] to ingress::hdr.ip.hdr_checksum; as:
+  PHV: extract inbuf bit[80..95] to PHV-allocated ingress::hdr.ip.hdr_checksum;
+rewrite extract inbuf bit[96..127] to ingress::hdr.ip.src_addr; as:
+  PHV: extract inbuf bit[96..127] to PHV-allocated ingress::hdr.ip.src_addr;
+rewrite extract inbuf bit[128..159] to ingress::hdr.ip.dst_addr; as:
+  PHV: extract inbuf bit[128..159] to PHV-allocated ingress::hdr.ip.dst_addr;
+rewrite extract constant 1 to ingress::hdr.ip.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.ip.$valid;
+rewrite extract inbuf bit[7..15] to egress::eg_intr_md.egress_port; as:
+  PHV: extract inbuf bit[7..15] to PHV-allocated egress::eg_intr_md.egress_port;
+rewrite extract constant 0 to egress::hdr.min_parse_depth_padding_0[1].$valid; as:
+Skipping extract of extract constant 0 to egress::hdr.min_parse_depth_padding_0[1].$valid; to 0
+rewrite extract inbuf bit[216..263] to egress::hdr.ethernet.dst_addr; as:
+  PHV: extract inbuf bit[232..263] to PHV-allocated egress::hdr.ethernet.dst_addr[31:0];
+  PHV: extract inbuf bit[216..231] to PHV-allocated egress::hdr.ethernet.dst_addr[47:32];
+rewrite extract inbuf bit[264..311] to egress::hdr.ethernet.src_addr; as:
+  PHV: extract inbuf bit[280..311] to PHV-allocated egress::hdr.ethernet.src_addr[31:0];
+  PHV: extract inbuf bit[264..279] to PHV-allocated egress::hdr.ethernet.src_addr[47:32];
+rewrite extract inbuf bit[312..327] to egress::hdr.ethernet.ether_type; as:
+  PHV: extract inbuf bit[312..327] to PHV-allocated egress::hdr.ethernet.ether_type;
+rewrite extract constant 1 to egress::hdr.ethernet.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.ethernet.$valid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[0].packet_payload; as:
+  PHV: extract inbuf bit[56..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:0];
+  PHV: extract inbuf bit[24..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80];
+rewrite extract constant 4 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 4 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[1].packet_payload; as:
+  PHV: extract inbuf bit[72..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[15:0];
+  PHV: extract inbuf bit[56..71] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:16];
+  PHV: extract inbuf bit[40..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[47:32];
+  PHV: extract inbuf bit[24..39] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:48];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80];
+rewrite extract constant 2 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 2 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[2].packet_payload; as:
+  PHV: extract inbuf bit[56..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0];
+  PHV: extract inbuf bit[24..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:32];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80];
+rewrite extract constant 1 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..3] to egress::hdr.ip.version; as:
+  PHV: extract inbuf bit[0..3] to PHV-allocated egress::hdr.ip.version;
+rewrite extract inbuf bit[4..7] to egress::hdr.ip.ihl; as:
+  PHV: extract inbuf bit[4..7] to PHV-allocated egress::hdr.ip.ihl;
+rewrite extract inbuf bit[8..15] to egress::hdr.ip.tos; as:
+  PHV: extract inbuf bit[8..15] to PHV-allocated egress::hdr.ip.tos;
+rewrite extract inbuf bit[16..31] to egress::hdr.ip.total_len; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated egress::hdr.ip.total_len;
+rewrite extract inbuf bit[32..47] to egress::hdr.ip.identification; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated egress::hdr.ip.identification;
+rewrite extract inbuf bit[48..50] to egress::hdr.ip.flags; as:
+  PHV: extract inbuf bit[48..50] to PHV-allocated egress::hdr.ip.flags;
+rewrite extract inbuf bit[51..63] to egress::hdr.ip.frag_offset; as:
+  PHV: extract inbuf bit[51..63] to PHV-allocated egress::hdr.ip.frag_offset;
+rewrite extract inbuf bit[64..71] to egress::hdr.ip.ttl; as:
+  PHV: extract inbuf bit[64..71] to PHV-allocated egress::hdr.ip.ttl;
+rewrite extract inbuf bit[72..79] to egress::hdr.ip.protocol; as:
+  PHV: extract inbuf bit[72..79] to PHV-allocated egress::hdr.ip.protocol;
+rewrite extract inbuf bit[80..95] to egress::hdr.ip.hdr_checksum; as:
+  PHV: extract inbuf bit[80..95] to PHV-allocated egress::hdr.ip.hdr_checksum;
+rewrite extract inbuf bit[96..127] to egress::hdr.ip.src_addr; as:
+  PHV: extract inbuf bit[96..127] to PHV-allocated egress::hdr.ip.src_addr;
+rewrite extract inbuf bit[128..159] to egress::hdr.ip.dst_addr; as:
+  PHV: extract inbuf bit[128..159] to PHV-allocated egress::hdr.ip.dst_addr;
+rewrite extract constant 1 to egress::hdr.ip.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.ip.$valid;
+split_parser_state(ingress::start_1, ingress::start_1, 0)
+  no need to split ingress::start_1 (nothing spilled)
+split_parser_state(ingress::EthIpParser_parse_rotate, ingress::EthIpParser_parse_rotate, 0)
+  no need to split ingress::EthIpParser_parse_rotate (nothing spilled)
+split_parser_state(ingress::EthIpParser_parse_ip, ingress::EthIpParser_parse_ip, 0)
+  constant: 1
+  extractors needed: 8 : 1
+  no need to split ingress::EthIpParser_parse_ip (nothing spilled)
+split_parser_state(ingress::start_0, ingress::start_0, 0)
+  constant: 2
+  extractors needed: 8 : 1
+  no need to split ingress::start_0 (nothing spilled)
+split_parser_state(ingress::TofinoIngressParser_parse_pktgen, ingress::TofinoIngressParser_parse_pktgen, 0)
+  no need to split ingress::TofinoIngressParser_parse_pktgen (nothing spilled)
+split_parser_state(ingress::start, ingress::start, 0)
+  no need to split ingress::start (nothing spilled)
+split_parser_state(ingress::$entry_point, ingress::$entry_point, 0)
+  no need to split ingress::$entry_point (nothing spilled)
+split_parser_state(egress::min_parse_depth_accept_loop.$it2, egress::min_parse_depth_accept_loop.$it2, 0)
+  constant: 1
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop.$it2 spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$it2.$split_0 []:
+  computed max shift = 88 for split iteration 0 of egress::min_parse_depth_accept_loop.$it2
+  0 split, 6 current
+split_parser_state(egress::min_parse_depth_accept_loop.$it2.$split_0, egress::min_parse_depth_accept_loop.$it2, 1)
+  no need to split egress::min_parse_depth_accept_loop.$it2.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop.$it2 is split into 2 states:
+  egress::min_parse_depth_accept_loop.$it2
+  egress::min_parse_depth_accept_loop.$it2.$split_0
+split_parser_state(egress::min_parse_depth_accept_loop.$it1, egress::min_parse_depth_accept_loop.$it1, 0)
+  spill extract inbuf bit[72..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[15:0]; { (ran out of extractors) }
+  constant: 2
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop.$it1 spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$it1.$split_0 []:
+  computed max shift = 72 for split iteration 0 of egress::min_parse_depth_accept_loop.$it1
+  1 split, 7 current
+split_parser_state(egress::min_parse_depth_accept_loop.$it1.$split_0, egress::min_parse_depth_accept_loop.$it1, 1)
+  no need to split egress::min_parse_depth_accept_loop.$it1.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop.$it1 is split into 2 states:
+  egress::min_parse_depth_accept_loop.$it1
+  egress::min_parse_depth_accept_loop.$it1.$split_0
+split_parser_state(egress::min_parse_depth_accept_loop, egress::min_parse_depth_accept_loop, 0)
+  constant: 4
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$split_0 []:
+  computed max shift = 88 for split iteration 0 of egress::min_parse_depth_accept_loop
+  0 split, 6 current
+split_parser_state(egress::min_parse_depth_accept_loop.$split_0, egress::min_parse_depth_accept_loop, 1)
+  no need to split egress::min_parse_depth_accept_loop.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop is split into 2 states:
+  egress::min_parse_depth_accept_loop
+  egress::min_parse_depth_accept_loop.$split_0
+split_parser_state(egress::min_parse_depth_accept_initial, egress::min_parse_depth_accept_initial, 0)
+  no need to split egress::min_parse_depth_accept_initial (nothing spilled)
+split_parser_state(egress::start_3, egress::start_3, 0)
+  no need to split egress::start_3 (nothing spilled)
+split_parser_state(egress::EthIpParser_parse_rotate_0, egress::EthIpParser_parse_rotate_0, 0)
+  no need to split egress::EthIpParser_parse_rotate_0 (nothing spilled)
+split_parser_state(egress::EthIpParser_parse_ip_0, egress::EthIpParser_parse_ip_0, 0)
+  constant: 2
+  extractors needed: 8 : 1
+  no need to split egress::EthIpParser_parse_ip_0 (nothing spilled)
+split_parser_state(egress::start, egress::start, 0)
+  spill extract inbuf bit[232..263] to PHV-allocated egress::hdr.ethernet.dst_addr[31:0]; { (out of buffer) }
+  spill extract inbuf bit[264..279] to PHV-allocated egress::hdr.ethernet.src_addr[47:32]; { (out of buffer) }
+  spill extract inbuf bit[280..311] to PHV-allocated egress::hdr.ethernet.src_addr[31:0]; { (out of buffer) }
+  spill extract inbuf bit[312..327] to PHV-allocated egress::hdr.ethernet.ether_type; { (out of buffer) }
+  constant: 1
+  extractors needed: 8 : 1
+  egress::start has out of buffer select
+  created split state egress parser state egress::start.$split_0 []:
+  computed max shift = 232 for split iteration 0 of egress::start
+  4 split, 5 current
+split_parser_state(egress::start.$split_0, egress::start, 1)
+  no need to split egress::start.$split_0 (nothing spilled)
+egress::start is split into 2 states:
+  egress::start
+  egress::start.$split_0
+split_parser_state(egress::$entry_point, egress::$entry_point, 0)
+  no need to split egress::$entry_point (nothing spilled)
+created stall state for out of buffer select on egress::start -> egress::start.$split_0
+group: {  [ ingress::start : inbuf bit[7..15] ig_intr_md.ingress_port; ] } has 1 def sets:
+def set 0:
+ingress::$entry_point -> ingress::start -- def state: ingress::start
+group: {  [ ingress::start_0 : inbuf bit[96..111] hdr.ethernet/ethernet.ether_type; ] } has 1 def sets:
+def set 0:
+ingress::TofinoIngressParser_parse_pktgen -> ingress::start_0 -- def state: ingress::start_0
+ingress::start -> ingress::start_0 -- def state: ingress::start_0
+created 2 coalesced groups:
+group 0: {  [ ingress::start : inbuf bit[7..15] ig_intr_md.ingress_port; ] }
+group 1: {  [ ingress::start_0 : inbuf bit[96..111] hdr.ethernet/ethernet.ether_type; ] }
+try allocating top down:
+>>>>>>>>>>>>>>>>
+allocating {  [ ingress::start : inbuf bit[7..15] ig_intr_md.ingress_port; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $half } to {  [ ingress::start : inbuf bit[7..15] ig_intr_md.ingress_port; ] }
+success
+<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>
+allocating {  [ ingress::start_0 : inbuf bit[96..111] hdr.ethernet/ethernet.ether_type; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $half } to {  [ ingress::start_0 : inbuf bit[96..111] hdr.ethernet/ethernet.ether_type; ] }
+success
+<<<<<<<<<<<<<<<<
+top down allocation successful!
+group: {  [ egress::start.$split_0 : inbuf bit[80..95] hdr.ethernet/ethernet.ether_type; ] } has 1 def sets:
+def set 0:
+egress::start.$oob_stall_0 -> egress::start.$split_0 -- def state: egress::start.$split_0
+created 1 coalesced groups:
+group 0: {  [ egress::start.$split_0 : inbuf bit[80..95] hdr.ethernet/ethernet.ether_type; ] }
+try allocating top down:
+>>>>>>>>>>>>>>>>
+allocating {  [ egress::start.$split_0 : inbuf bit[80..95] hdr.ethernet/ethernet.ether_type; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $half } to {  [ egress::start.$split_0 : inbuf bit[80..95] hdr.ethernet/ethernet.ether_type; ] }
+success
+<<<<<<<<<<<<<<<<
+top down allocation successful!
+removed empty parser start state on ingress
+removed empty parser start state on egress
